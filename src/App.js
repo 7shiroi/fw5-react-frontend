@@ -1,25 +1,29 @@
 import logo from './logo.svg';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import { Button } from './components/QuantityButtons';
+import Footer from './components/Footer';
+import Home from './pages/Home';
+import React, { Component } from 'react';
+import Login from './pages/Login';
 
-export default App;
+export default class App extends Component {
+  state = {
+    showPage: 'Home',
+    isLoggedIn: false,
+  }
+
+  render() {
+    // <div className="App">
+    //   <header className="App-header">
+    //       <Button initNumber={50} />
+    //   </header>
+    // </div>
+    return (
+      <>
+      { (this.state.showPage === 'Login' && !this.state.isLoggedIn) && <Login nextPage={(value)=>{this.setState({showPage: value})}} isLoggedIn={(value)=>{this.setState({isLoggedIn: value})}} /> }
+      { (this.state.showPage === 'Home') && <Home isLoggedIn={this.state.isLoggedIn} /> }
+      </>
+    )
+  }
+}

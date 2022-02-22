@@ -36,3 +36,27 @@
     transform: rotate(360deg);
   }
 }
+
+.numberManipulation {
+  display: flex;
+  justify-content: space-between;
+  font-size: 2em;
+}
+
+.numberManipulation button {
+  flex-grow: 1;
+  margin : 0 1em;
+  border-radius: 10px;
+  font-size: 32px;
+}
+
+.numberManipulation button.increment {
+  background-color: #61dafb;
+}
+.numberManipulation button.decrement {
+  background-color: azure;
+}
+
+.w-50 {
+  width: 50%;
+}
