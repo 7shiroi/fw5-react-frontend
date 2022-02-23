@@ -14,10 +14,6 @@ export default class Home extends Component {
       {name: "Teluk Bogam", location: "Kalimantan", image: ImageContentTelukBogam},
       {name: "Bromo", location: "Malang", image: ImageContentBromo},
       {name: "Malioboro", location: "Yogyakarta", image: ImageContentMalioboro},
-      {name: "Malioboro", location: "Yogyakarta", image: ImageContentMalioboro},
-      {name: "Malioboro", location: "Yogyakarta", image: ImageContentMalioboro},
-      {name: "Malioboro", location: "Yogyakarta", image: ImageContentMalioboro},
-      {name: "Malioboro", location: "Yogyakarta", image: ImageContentMalioboro},
     ]
   }
 
@@ -25,7 +21,21 @@ export default class Home extends Component {
     return (
       <>
         <Navbar isLoggedIn={this.props.isLoggedIn} />
-        <main>
+        <header className='home-header'>
+          <div className='header-content h-100'>
+            <div className='container'>
+              <div className='row'>
+                <div className='col-12 col-sm-5'>
+                  <h1 className='display-2 py-5'><strong>Explore and<br/>Travel</strong></h1>
+                  <p className='mb-3'>Vehicle Finder</p>
+                  <div className='white-line'></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </header>
+        <main className='py-5'>
             <div className='container'>
                 <div className='row'>
                     <div className='col'>

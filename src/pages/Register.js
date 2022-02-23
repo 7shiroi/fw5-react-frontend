@@ -1,19 +1,21 @@
 import React, { Component } from 'react'
 import Footer from '../components/Footer'
 import googleIcon from '../assets/images/google-login-icon.png'
-import { Link } from 'react-router-dom';
 
-export default class Login extends Component {
+export default class Register extends Component {
   constructor(props) {
     super(props);
-    this.state = {email: '', password: ''};
+    this.state = {email: '', password: '', name: ''};
 
+    this.handleChangeName = this.handleChangeName.bind(this);
     this.handleChangeEmail = this.handleChangeEmail.bind(this);
     this.handleChangePassword = this.handleChangePassword.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   
+  handleChangeName(event) {
+    this.setState({name: event.target.value});
+  }
   handleChangeEmail(event) {
     this.setState({email: event.target.value});
   }
@@ -21,21 +23,8 @@ export default class Login extends Component {
     this.setState({password: event.target.value});
   }
 
-  handleSubmit(event) {
-    if (this.state.email === 'admin@mail.com' && this.state.password === '1234') {
-      this.props.nextPage("Home")
-      this.props.isLoggedIn(true)
-    }else {
-      alert('Invalid Credential')
-    }
-    event.preventDefault();
-  }
-
-  goToRegisterNext() {
-    this.props.nextPage("Register")
-  }
-  goToForgotPasswordNext() {
-    this.props.nextPage("ForgotPassword")
+  goToLoginNext () {
+    this.props.nextPage("Login")
   }
 
   render() {
@@ -48,13 +37,13 @@ export default class Login extends Component {
                 <div className="intro">
                   <h1 className="pt-5 mt-5">Let's Explore<br />The World</h1>
                   <div className="other-action-xl">
-                    <p className="mt-5">Don't have account?</p>
-                    <Link className="btn-dark mt-3" to="/register">Sign Up</Link>
+                    <p className="mt-5">Already have account?</p>
+                    <button className="btn-dark mt-3" onClick={() => this.goToLoginNext()}>Login</button>
                   </div>
                 </div>
                 <div className="container-fluid other-action d-none">
-                  <p className="mt-5">Don't have account?</p>
-                  <Link className="btn-dark mt-3" to="/register">Sign Up</Link>
+                  <p className="mt-5">Already have account?</p>
+                  <button className="btn-dark mt-3" onClick={this.goToLoginNext}>Login</button>
                 </div>
                 <div className="separation-line h-100 d-flex flex-column justify-content-center align-items-center">
                   <div className="white-dot"></div>
@@ -62,7 +51,10 @@ export default class Login extends Component {
                   <div className="white-dot"></div>
                 </div>
                 <div className="d-flex flex-column h-100 justify-content-center login-info">
-                  <form className="container-fluid" onSubmit={this.handleSubmit}>
+                  <form className="container-fluid">
+                    <div>
+                      <input id='name' className="mb-4" type="text" placeholder="Name" value={this.state.name} onChange={this.handleChangeName} required />
+                    </div>
                     <div>
                       <input id='email' className="mb-4" type="email" placeholder="Email" value={this.state.email} onChange={this.handleChangeEmail} required />
                     </div>
@@ -70,10 +62,7 @@ export default class Login extends Component {
                       <input className="mb-3" type="password" placeholder="Password"value={this.state.password} onChange={this.handleChangePassword} required />
                     </div>
                     <div>
-                      <Link className="mb-5 d-block" to="/forgotPassword">Forgot password?</Link>
-                    </div>
-                    <div>
-                      <button className="btn-primary mb-4" type="submit">Login</button>
+                      <button className="btn-primary mb-4" type="submit">Sign Up</button>
                     </div>
                     <div>
                       <button className="btn-login-google">

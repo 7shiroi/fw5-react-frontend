@@ -6,6 +6,10 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import React, { Component } from 'react';
 import Login from './pages/Login';
+import Register from './pages/Register';
+import ForgotPassword from './pages/ForgotPassword';
+import VehicleType from './pages/VehicleType';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 
 export default class App extends Component {
   state = {
@@ -19,11 +23,25 @@ export default class App extends Component {
     //       <Button initNumber={50} />
     //   </header>
     // </div>
+    // return (
+    //   <>
+    //   { (this.state.showPage === 'Login' && !this.state.isLoggedIn) && <Login nextPage={(value)=>{this.setState({showPage: value})}} isLoggedIn={(value)=>{this.setState({isLoggedIn: value})}} /> }
+    //   { (this.state.showPage === 'Home') && <Home isLoggedIn={this.state.isLoggedIn} /> }
+    //   { (this.state.showPage === 'Register' && !this.state.isLoggedIn) && <Register nextPage={(value)=>{this.setState({showPage: value})}} /> }
+    //   { (this.state.showPage === 'ForgotPassword' && !this.state.isLoggedIn) && <ForgotPassword nextPage={(value)=>{this.setState({showPage: value})}} /> }
+    //   { (this.state.showPage === 'VehicleType' && !this.state.isLoggedIn) && <VehicleType isLoggedIn={this.state.isLoggedIn} nextPage={(value)=>{this.setState({showPage: value})}} /> }
+    //   </>
+    // )
     return (
-      <>
-      { (this.state.showPage === 'Login' && !this.state.isLoggedIn) && <Login nextPage={(value)=>{this.setState({showPage: value})}} isLoggedIn={(value)=>{this.setState({isLoggedIn: value})}} /> }
-      { (this.state.showPage === 'Home') && <Home isLoggedIn={this.state.isLoggedIn} /> }
-      </>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/login' element={<Login />} />
+          <Route path='/register' element={<Register />} />
+          <Route path='/vehicleType' element={<VehicleType />} />
+          <Route path='/forgotPassword' element={<ForgotPassword />} />
+        </Routes>
+      </BrowserRouter>
     )
   }
 }

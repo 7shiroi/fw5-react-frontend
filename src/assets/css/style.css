@@ -3,6 +3,10 @@
   --secondary: #398AB9;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', sans-serif;
+}
+
 .item-contents .content-details {
   width: 40%;
   border-top-right-radius: .5em;
@@ -198,14 +202,6 @@ main.main-content div.contents div.content-info p b{
   font-weight: 600px;
 }
 
-header .header-content h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 48px;
-  font-weight: 700;
-  line-height: 64px;
-  margin-left: 100px;
-  margin-bottom: 80px;
-}
 header .header-content input.user-auth {
   width: 490px;
   height: 80px;
@@ -254,13 +250,13 @@ header.home-header .header-content a {
   color: black;
   margin-bottom: 40px;
 }
-header.home-header .header-content p {
-  font-weight: 700;
-  font-size: 1.5em;
-  line-height: 33px;
-  color: rgba(57, 57, 57, 0.5);
-  margin-bottom: 53px;
+
+header.home-header .header-content .white-line {
+  width: 2em;
+  height: 2px;
+  background-color: white;
 }
+
 body {
   font-family: 'Nunito', sans-serif !important;
 }
@@ -379,21 +375,15 @@ nav .navbar-brand {
   background-color: rgba(203, 203, 212, 0.2);
 }
 
-/* header.home-header {
-  background-image: url(../assets/images/bg-home-header.png);
+header.home-header {
+  background-image: url(../images/bg-home-header.png);
   background-repeat: no-repeat;
   background-size: cover;
   height: 763px;
-} */
-header.home-header .header-content {
-  background-color: rgba(0, 0, 0, 0.3);
-  color: white;
 }
-header.home-header h1{
-  padding-top: 64px;
-  margin-left: 0px;
-  font-size: 64px;
-  font-family: 'Playfair Display', serif;
+header.home-header .header-content {
+  background-color: rgba(0, 0, 0, 0.7);
+  color: white;
 }
 
 header.home-header h5{
@@ -581,14 +571,19 @@ main.main-content .detail h3 {
 .back-link {
   display: flex;
   align-items: center;
-  font-size: 36px;
+  font-size: 2.25em;
   line-height: 1.5em;
   font-weight: bold;
   color: black;
 }
 
-.back-link i {
-  color: #4A4C53;
+.back-link .clickAble {
+  cursor: pointer;
+}
+
+.back-link svg {
+  color: white;
+  font-size: 1.5em;
 }
 
 .photo-list i{
