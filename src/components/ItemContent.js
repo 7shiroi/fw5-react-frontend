@@ -7,7 +7,7 @@ export default class ItemContent extends Component {
           <div className='content-image'>
             <img className='img-fluid rounded' src={this.props.image} alt='content'/>
           </div>
-          <div className='position-absolute bottom-0 start-0 bg-white content-details'>
+          <div className='position-absolute bottom-0 start-0 content-details'>
             <div>{this.props.name}</div>
             <div>{this.props.location}</div>
           </div>

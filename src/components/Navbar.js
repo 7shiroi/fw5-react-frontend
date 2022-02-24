@@ -29,10 +29,10 @@ export default class Navbar extends Component {
                     <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/VehicleType">Vehicle Type</Link>
+                    <Link className="nav-link" to="/vehicle-type">Vehicle Type</Link>
                 </li>
                 <li className="nav-item">
-                    <Link className="nav-link" to="/History">History</Link>
+                    <Link className="nav-link" to="/history">History</Link>
                 </li>
                 <li className="nav-item">
                     <a className="nav-link" href="#">About</a>
@@ -49,8 +49,8 @@ export default class Navbar extends Component {
                 {
                   !this.props.isLoggedIn &&             
                   <div>
-                    <Link className="btn-outline-primary me-3" to="/Login">Login</Link>
-                    <Link className="btn-primary" to="/Register">Register</Link>
+                    <Link className="btn-outline-primary me-3" to="/login">Login</Link>
+                    <Link className="btn-primary" to="/register">Register</Link>
                   </div>
                 }
             </div>

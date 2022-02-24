@@ -1,6 +1,4 @@
 import logo from './logo.svg';
-import './App.css';
-
 import { Button } from './components/QuantityButtons';
 import Footer from './components/Footer';
 import Home from './pages/Home';
@@ -10,12 +8,10 @@ import Register from './pages/Register';
 import ForgotPassword from './pages/ForgotPassword';
 import VehicleType from './pages/VehicleType';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import DetailVehicle from './pages/DetailVehicle';
+import VehicleList from './pages/VehicleList';
 
 export default class App extends Component {
-  state = {
-    showPage: 'Home',
-    isLoggedIn: false,
-  }
 
   render() {
     // <div className="App">
@@ -38,8 +34,10 @@ export default class App extends Component {
           <Route path='/' element={<Home />} />
           <Route path='/login' element={<Login />} />
           <Route path='/register' element={<Register />} />
-          <Route path='/vehicleType' element={<VehicleType />} />
-          <Route path='/forgotPassword' element={<ForgotPassword />} />
+          <Route path='/vehicle-type' element={<VehicleType />} />
+          <Route path='/forgot-password' element={<ForgotPassword />} />
+          <Route path='/vehicle/:id' element={<DetailVehicle />} />
+          <Route path='/vehicles/:category' element={<VehicleList />} />
         </Routes>
       </BrowserRouter>
     )

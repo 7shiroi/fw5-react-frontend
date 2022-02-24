@@ -10,10 +10,13 @@ h1, h2, h3, h4, h5, h6 {
 .item-contents .content-details {
   width: 40%;
   border-top-right-radius: .5em;
+  color: #000000;
+  background-color: rgba(255, 255, 255, .7);
 }
 
 .item-contents .content-image {
-  max-width: 260px;
+  max-width: 280px;
+  max-height: 280px;
 }
 
 nav.navbar {
@@ -29,6 +32,25 @@ nav.navbar button{
   width: 12em;
   height: 44px;
 }
+
+.numberManipulation {
+  font-size: 1.5em;
+}
+
+.numberManipulation button {
+  flex-grow: 1;
+  border-radius: 10px;
+  font-size: 1.5em;
+  border: .5px solid;
+}
+
+.numberManipulation button.increment {
+  background-color: var(--primary);
+}
+.numberManipulation button.decrement {
+  background-color: azure;
+}
+
 
 header.login-header {
   background-image: url(../images/bg-login.png);
@@ -1165,6 +1187,14 @@ div.break {
 
   .main-content .title a {
     font-size: 1em;
+  } 
+}
+
+@media (max-width: 575px) { /*sm breakpoint*/
+  .numberManipulation {
+    font-size: 1em;
   }
-  
+  .numberManipulation button {
+    font-size: 1.5em;
+  }
 }
