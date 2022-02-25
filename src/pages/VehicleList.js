@@ -7,6 +7,8 @@ import NoImageIcon from '../assets/images/no-image-icon.png'
 import Navbar from '../components/Navbar'
 
 export const VehicleList = () => {
+  const {REACT_APP_LIMIT_ITEMS: limit} = process.env
+
   const {category} = useParams()
   
   const [list, setList] = useState([])
@@ -16,20 +18,22 @@ export const VehicleList = () => {
 
   const makeUrl = (queryParams) => {
     let url = ""
-    if (category === 'popular'){
-      url = "http://localhost:5000/vehicle/popular?limit=8"
+
+    if (!category){
+      url = `http://localhost:5000/vehicle?limit=${limit}`
+    }else if (category === 'popular'){
+      url = `http://localhost:5000/vehicle/popular?limit=${limit}`
       setTitle("Popular in Town List")
     }else if (category === 'cars') {
-      url = "http://localhost:5000/vehicle/category/1?limit=8"
+      url = `http://localhost:5000/vehicle/category/1?limit=${limit}`
       setTitle("Cars List")
     }else if (category === 'motorbikes') {
-      url = "http://localhost:5000/vehicle/category/3?limit=8"
+      url = `http://localhost:5000/vehicle/category/3?limit=${limit}`
       setTitle("Motorbikes List")
     }else if (category === 'bikes') {
-      url = "http://localhost:5000/vehicle/category/2?limit=8"
+      url = `http://localhost:5000/vehicle/category/2?limit=${limit}`
       setTitle("Bikes List")
-    }
-    
+    }    
     if(queryParams){
       url += queryParams
     }
@@ -42,8 +46,9 @@ export const VehicleList = () => {
     const hasPrepayment = searchParams.get('hasPrepayment')
     const sort = searchParams.get('sort')
     const order = searchParams.get('order')
+    const idCategory = searchParams.get('category')
 
-    const data = {search, isAvailable, hasPrepayment, sort, order}
+    const data = {search, isAvailable, hasPrepayment, sort, order, idCategory}
     
     let queryString = ''
     for(const key in data) {
@@ -53,7 +58,7 @@ export const VehicleList = () => {
     }
     
     const url = makeUrl(queryString)
-
+    console.log(url)
     getList(url)
   }, [])
 
@@ -106,37 +111,37 @@ export const VehicleList = () => {
                   </div>
                   <div className='row mb-2'>
                     <div className='col-sm-6 col-md-3 form-floating'>
-                      <select id='isAvailable' className='form-select' name="isAvailable">
-                        <option selected value="">Show All</option>
+                      <select id='isAvailable' className='form-select' name="isAvailable" defaultValue={""}>
+                        <option value="">Show All</option>
                         <option value="1">Available only</option>
                         <option value="0">Unavailable</option>
                       </select>
-                      <label for="isAvailable">Availability</label>
+                      <label htmlFor="isAvailable">Availability</label>
                     </div>
                     <div className='col-sm-6 col-md-3 form-floating'>
-                      <select id="hasPrepayment" className='form-select' name="hasPrepayment">
-                        <option selected value="">Show All</option>
+                      <select id="hasPrepayment" className='form-select' name="hasPrepayment" defaultValue={""}>
+                        <option value="">Show All</option>
                         <option value="0">No Prepayment</option>
                         <option value="1">Must prepay</option>
                       </select>
-                      <label for="hasPrepayment">Prepayment</label>
+                      <label htmlFor="hasPrepayment">Prepayment</label>
                     </div>
                     <div className='col-sm-6 col-md-3 form-floating'>
-                      <select id='sort' className='form-select' name="sort">
-                        <option selected value="name">Name</option>
+                      <select id='sort' className='form-select' name="sort" defaultValue={"name"}>
+                        <option value="name">Name</option>
                         <option value="price">Price</option>
                         <option value="location">Location</option>
                         <option value="capacity">Capacity</option>
                         <option value="stock">Stock</option>
                       </select>
-                      <label for="sort">Sort by</label>
+                      <label htmlFor="sort">Sort by</label>
                     </div>
                     <div className='col-sm-6 col-md-3 form-floating'>
-                      <select id="order" className='form-select' name="order">
-                        <option selected value="asc">Ascending</option>
+                      <select id="order" className='form-select' name="order" defaultValue={"asc"}>
+                        <option value="asc">Ascending</option>
                         <option value="desc">Descending</option>
                       </select>
-                      <label for="order">Order by</label>
+                      <label htmlFor="order">Order by</label>
                     </div>
                   </div>
                   <div className='row'>
@@ -144,12 +149,14 @@ export const VehicleList = () => {
                   </div>
                 </form>
               </div>
-              <div className='d-flex flex-column flex-md-row flex-md-wrap justify-content-between align-items-center mb-3'>
+              <div className='row mb-3'>
                 {
                   list.map((obj, idx) => (   
-                    <Link to={`/vehicle/${obj.id}`}>
-                      <ItemContent key={`items-${idx}`} image={obj.image || NoImageIcon} name={obj.name} location={obj.location} />
-                    </Link>
+                    <div className='col-sm-6 col-md-4 col-lg-3'>
+                      <Link key={obj.id} to={`/vehicle/${obj.id}`}>
+                        <ItemContent key={`items-${idx}`} image={obj.image || NoImageIcon} name={obj.name} location={obj.location} />
+                      </Link>
+                    </div>
                 ))
                 }
               </div>

@@ -37,6 +37,7 @@ export default class App extends Component {
           <Route path='/vehicle-type' element={<VehicleType />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
           <Route path='/vehicle/:id' element={<DetailVehicle />} />
+          <Route path='/vehicles/search' element={<VehicleList />} />
           <Route path='/vehicles/:category' element={<VehicleList />} />
         </Routes>
       </BrowserRouter>

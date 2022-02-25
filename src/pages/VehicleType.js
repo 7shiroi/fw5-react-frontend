@@ -53,7 +53,7 @@ export const VehicleType = () => {
               <div className='d-flex flex-column flex-md-row flex-md-wrap justify-content-between align-items-center mb-3'>
                 {
                   popular.map((obj, idx) => (   
-                    <Link to={`/vehicle/${obj.id}`}>
+                    <Link key={obj.id} to={`/vehicle/${obj.id}`}>
                       <ItemContent key={`items-${idx}`} image={obj.image || NoImageIcon} name={obj.name} location={obj.location} />
                     </Link>
                 ))
@@ -72,7 +72,7 @@ export const VehicleType = () => {
               <div className='d-flex flex-column flex-md-row flex-md-wrap justify-content-between align-items-center mb-3'>
                 {
                   car.map((obj, idx) => (   
-                    <Link to={`/vehicle/${obj.id}`}>
+                    <Link key={obj.id} to={`/vehicle/${obj.id}`}>
                       <ItemContent key={`items-${idx}`} image={obj.image || NoImageIcon} name={obj.name} location={obj.location} />
                     </Link>
                 ))
@@ -91,7 +91,7 @@ export const VehicleType = () => {
               <div className='d-flex flex-column flex-md-row flex-md-wrap justify-content-between align-items-center mb-3'>
                 {
                   motorbike.map((obj, idx) => (   
-                  <Link to={`/vehicle/${obj.id}`}>
+                  <Link key={obj.id} to={`/vehicle/${obj.id}`}>
                     <ItemContent key={`items-${idx}`} image={obj.image || NoImageIcon} name={obj.name} location={obj.location} />
                   </Link>
                 ))
@@ -110,7 +110,7 @@ export const VehicleType = () => {
               <div className='d-flex flex-column flex-md-row flex-md-wrap justify-content-between align-items-center mb-3'>
                 {
                   bike.map((obj, idx) => (   
-                    <Link to={`/vehicle/${obj.id}`}>
+                    <Link key={obj.id} to={`/vehicle/${obj.id}`}>
                       <ItemContent key={`items-${idx}`} image={obj.image || NoImageIcon} name={obj.name} location={obj.location} />
                     </Link>
                 ))
