@@ -1,8 +1,10 @@
 import {default as axios} from 'axios'
-import React, { Component, useEffect, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import ItemContent from '../components/ItemContent'
 import Layout from '../components/Layout'
+import {FaStar} from 'react-icons/fa'
+import testimonyImage from '../assets/images/image-main-content-testimonial-user.png'
 
 export const Home = () => {
   const [popular, setPopular] = useState([])
@@ -72,21 +74,58 @@ export const Home = () => {
       </header>
       <main className='py-5'>
           <div className='container'>
+            <section className='popular mb-4'>
               <div className='row'>
                   <div className='col'>
                       <h2>Popular in Town</h2>
                   </div>
                   <div className='col text-end'>
-                      <a href='#'>View All</a>
+                  <Link to='/vehicles/popular'>View All</Link>
                   </div>
               </div>
-              <div className='d-flex flex-column flex-md-row flex-md-wrap justify-content-between align-items-center'>
-                {
-                  popular.map((obj, idx) => (   
-                  <ItemContent key={`items-${idx}`} image={obj.image} name={obj.name} location={obj.location} />
-                ))
-                }
+              <div className='row text-center'>
+                  {
+                    popular.map((obj, idx) => (   
+                      <div className='col-sm-6 col-lg-3'>
+                        <Link key={obj.id} to={`/vehicle/${obj.id}`}>
+                          <ItemContent key={`items-${idx}`} image={obj.image} name={obj.name} location={obj.location} />
+                        </Link>
+                      </div>
+                    ))
+                  }
               </div>
+            </section>
+            <section className='testimony'>
+              <div className='row'>
+                <h2>Testimonials</h2>
+              </div>
+              <div className='row'>
+                <div className='col-sm-6 order-2 order-sm-1 d-flex flex-column justify-content-center'>
+                  <div className='align-self-center align-self-sm-start mb-3'>
+                    <FaStar className='star star-on' />
+                    <FaStar className='star star-on' />
+                    <FaStar className='star star-on' />
+                    <FaStar className='star star-on' />
+                    <FaStar className='star star-on' />
+                  </div>
+                  <div>
+                    <blockquote className='blockquote mb-3'>
+                      <p>”It was the right decision to rent vehicle here, I spent less money and enjoy the trip. It was an amazing experience to have a ride for wildlife trip!”</p>
+                    </blockquote>
+                  </div>
+                  <div>
+                    <strong>Edward Newgate</strong>
+                  </div>
+                  <div>
+                    <small>Founder Circle</small>
+                  </div>
+                </div>
+                <div className='col-sm-6 order-1 order-sm-2 d-flex justify-content-center justify-content-sm-end mb-3'>
+                  <img className='img-fluid rounded' src={testimonyImage} alt='testimony-user'/>
+                </div>
+              </div>
+
+            </section>
           </div>
       </main>
     </Layout>
