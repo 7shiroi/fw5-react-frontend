@@ -10,6 +10,11 @@ import VehicleType from './pages/VehicleType';
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import DetailVehicle from './pages/DetailVehicle';
 import VehicleList from './pages/VehicleList';
+import Reservation from './pages/Reservation';
+import Payment from './pages/Payment';
+import History from './pages/History';
+import Profile from './pages/Profile';
+import PageNotFound from './pages/PageNotFound';
 
 export default class App extends Component {
 
@@ -31,14 +36,20 @@ export default class App extends Component {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/login' element={<Login />} />
-          <Route path='/register' element={<Register />} />
-          <Route path='/vehicle-type' element={<VehicleType />} />
-          <Route path='/forgot-password' element={<ForgotPassword />} />
-          <Route path='/vehicle/:id' element={<DetailVehicle />} />
-          <Route path='/vehicles/search' element={<VehicleList />} />
-          <Route path='/vehicles/:category' element={<VehicleList />} />
+            <Route path='*' element={<PageNotFound />} />
+
+            <Route path='/' element={<Home />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/vehicle-type' element={<VehicleType />} />
+            <Route path='/forgot-password' element={<ForgotPassword />} />
+            <Route path='/vehicle/:id' element={<DetailVehicle />} />
+            <Route path='/vehicles/search' element={<VehicleList />} />
+            <Route path='/vehicles/:category' element={<VehicleList />} />
+            <Route path='/reservation/:id' element={<Reservation />} />
+            <Route path='/payment' element={<Payment />} />
+            <Route path='/history' element={<History />} />
+            <Route path='/profile' element={<Profile />} />
         </Routes>
       </BrowserRouter>
     )

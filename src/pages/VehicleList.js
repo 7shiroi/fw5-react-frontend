@@ -15,6 +15,8 @@ export const VehicleList = () => {
   const [title, setTitle] = useState([])
   const [pageInfo, setPageInfo] = useState([])
   let [searchParams, setSearchParams] = useSearchParams();
+  const [responseStatus, setResponseStatus] = useState(null)
+  const [categoryList, setCategoryList] = useState([])
 
   const makeUrl = (queryParams) => {
     let url = ""
@@ -46,7 +48,7 @@ export const VehicleList = () => {
     const hasPrepayment = searchParams.get('hasPrepayment')
     const sort = searchParams.get('sort')
     const order = searchParams.get('order')
-    const idCategory = searchParams.get('category')
+    const idCategory = searchParams.get('idCategory')
 
     const data = {search, isAvailable, hasPrepayment, sort, order, idCategory}
     
@@ -58,14 +60,42 @@ export const VehicleList = () => {
     }
     
     const url = makeUrl(queryString)
-    console.log(url)
+
+    if(search){
+      document.getElementById('searchFilter').elements["search"].value = search
+    }
+    if(isAvailable){
+      document.getElementById('searchFilter').elements["isAvailable"].value = isAvailable
+    }
+    if(hasPrepayment){
+      document.getElementById('searchFilter').elements["hasPrepayment"].value = hasPrepayment
+    }
+    if(sort){
+      document.getElementById('searchFilter').elements["sort"].value = sort
+    }
+    if(order){
+      document.getElementById('searchFilter').elements["order"].value = order
+    }
+    if(idCategory){
+      document.getElementById('searchFilter').elements["idCategory"].value = idCategory
+    }
+
     getList(url)
+    getCategoryList()
   }, [])
 
   const getList = async (url) => {
-    const {data} = await axios.get(url)
-    setList(data.result)
-    setPageInfo(data.pageinfo)
+    const {data, status} = await axios.get(url, {
+      validateStatus: function (status) {
+        return status < 500; 
+      }
+    })
+    setResponseStatus(status)
+
+    if(status === 200) {
+      setList(data.result)
+      setPageInfo(data.pageinfo)
+    }
   }
   
   const getNextData = async (url) => {
@@ -78,6 +108,11 @@ export const VehicleList = () => {
     setPageInfo(data.pageinfo)
   }
 
+  const getCategoryList = async () => {
+    const {data} = await axios.get('http://localhost:5000/category')
+    setCategoryList(data.result)
+  }
+
   const onSearch = async(event)=>{
     event.preventDefault();
     const search = event.target.elements["search"].value
@@ -85,8 +120,9 @@ export const VehicleList = () => {
     const hasPrepayment = event.target.elements["hasPrepayment"].value
     const sort = event.target.elements["sort"].value
     const order = event.target.elements["order"].value
+    const idCategory = event.target.elements["category"].value
 
-    const data = {search, isAvailable, hasPrepayment, sort, order}
+    const data = {search, isAvailable, hasPrepayment, sort, order, idCategory}
     const queryString = '&'+JSON.stringify(data).replaceAll('"', "").replaceAll(',','&').replaceAll(':', '=').replaceAll(' ', '%20').replaceAll('{', '').replaceAll('}', '')
     const url = makeUrl(queryString)
     setSearchParams(data)
@@ -105,7 +141,7 @@ export const VehicleList = () => {
                   </div>
               </div>
               <div>
-                <form className='' onSubmit={onSearch}>
+                <form id='searchFilter' className='' onSubmit={onSearch}>
                   <div className='row mb-2'>
                     <input className='form-control' type="text" name="search" placeholder='Search by vehicle name / color / location' />
                   </div>
@@ -143,6 +179,17 @@ export const VehicleList = () => {
                       </select>
                       <label htmlFor="order">Order by</label>
                     </div>
+                    <div className='col-12 form-floating'>
+                      <select className='form-select vehicle-search' name="category">
+                        <option className='d-none' value=''>Vehicle Type</option>
+                        {
+                          categoryList.map((obj) => (
+                            <option key={obj.id} value={obj.id}>{obj.name}</option>
+                          ))
+                        }
+                      </select>                          
+                      <label htmlFor="category">Vehicle Type</label>
+                    </div>  
                   </div>
                   <div className='row'>
                     <button className='btn-primary' type="submit">Search</button>
@@ -151,6 +198,7 @@ export const VehicleList = () => {
               </div>
               <div className='row mb-3'>
                 {
+                  responseStatus === 200 && 
                   list.map((obj, idx) => (   
                     <div className='col-sm-6 col-md-4 col-lg-3'>
                       <Link key={obj.id} to={`/vehicle/${obj.id}`}>
@@ -158,6 +206,12 @@ export const VehicleList = () => {
                       </Link>
                     </div>
                 ))
+                }
+                {
+                  responseStatus >= 400 &&
+                  <div className='text-center'>
+                    <h2>Oops! List not found</h2>
+                  </div>
                 }
               </div>
               {

@@ -47,12 +47,12 @@ export const Home = () => {
                 <div className='white-line mb-5'></div>
                 <form onSubmit={onSearch}>
                   <div className='row mb-3'>
-                    <input className='form-control' type='text' name='search' placeholder='Searching for? (Vehicle name, location, color)' />
+                    <input className='form-control vehicle-search' type='text' name='search' placeholder='Searching for? (Vehicle name, location, color)' />
                   </div>
                   <div className='row mb-5'>
                     <div className='col-sm-6 px-0 pe-sm-2 mb-3'>
-                      <select className='form-select' name="category">
-                        <option className='d-none' value=''>Category</option>
+                      <select className='form-select vehicle-search' name="category">
+                        <option className='d-none' value=''>Vehicle Type</option>
                         {
                           category.map((obj) => (
                             <option key={obj.id} value={obj.id}>{obj.name}</option>
@@ -61,10 +61,12 @@ export const Home = () => {
                       </select>                          
                     </div>
                     <div className='col-sm-6 px-0 ps-sm-2'>
-                      <input className='form-control' type="text" placeholder='Date' onFocus={(e) => e.target.type = 'date'} onBlur={(e) => e.target.type = 'text'} />
+                      <input className='form-control vehicle-search' type="text" placeholder='Date' onFocus={(e) => e.target.type = 'date'} onBlur={(e) => e.target.type = 'text'} />
                     </div>
                   </div>
-                  <button className='btn-primary' type='submit'>Search</button>
+                  <div className='w-100 d-flex justify-content-center justify-content-sm-start'>
+                    <button className='vehicle-search btn-primary' type='submit'>Search</button>
+                  </div>
                 </form>
               </div>
             </div>

@@ -22,6 +22,10 @@ export class QuantityButtons extends React.Component{
       }
     }
 
+    componentDidUpdate(){
+      this.props.currentNumber(this.state.number)
+    }
+
     render (){
         return (
             <div className="w-100">

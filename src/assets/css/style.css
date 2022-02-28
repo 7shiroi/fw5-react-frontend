@@ -7,6 +7,10 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', sans-serif;
 }
 
+.payment {
+  height: 3em;
+}
+
 .testimony .star {
   font-size: 2em;
 }
@@ -163,9 +167,10 @@ header.login-header div.login-info button.btn-login-google{
   height: 2em;
 }
 
-main.main-content{
+main {
   background-color: #F5F5F5;
-  padding-top: 80px;
+  padding-bottom: 2em;
+  padding-top: 3em;
 }
 
 main.main-content div.contents{
@@ -438,36 +443,29 @@ header.home-header .mode-light hr {
   margin-bottom: 1.5em;
 }
 
-header.home-header .header-content input {
+header.home-header .header-content .vehicle-search {
   font-weight: 700;
-  height: 52px;
+  height: 3.5em;
   background-color: rgba(255, 255, 255, .3);
   border: none;
   border-radius: 10px;
   text-align: center;
+  color: white;
 }
 
-header.home-header .header-content input.divide-1 {
-  min-width: 470px;
-  flex-grow: 2;
-  margin-bottom: 34px;
+header.home-header .header-content .vehicle-search::placeholder {
+  color: #DADADA;
 }
 
-header.home-header .header-content input.divide-2 {
-  width: 220px;
+header.home-header .header-content select.vehicle-search option{
+  background: rgba(0, 0, 0, .7);
+  border: none;
 }
-
-header.home-header .header-content input.divide-2#location {
-  margin-right: 10px !important; 
-}
-
-header.home-header .header-content input.divide-2#date {
-  margin-left: 10px !important;
-}
-
-header.home-header .header-content button{
-  height: 52px;
-  width: 180px;
+header.home-header .header-content button.vehicle-search {
+  width: 10em;
+  height: 3.5em;
+  padding: 0 12px;
+  background-color: var(--primary)
 }
 
 .main-content .title h2 {
@@ -620,6 +618,10 @@ main.main-content .detail h3 {
   font-size: 1.5em;
 }
 
+.back-link svg.back-black {
+  color: black !important;
+}
+
 .photo-list i{
   color: #4A4C53;
   font-size: 22px;
@@ -638,24 +640,21 @@ main.main-content .detail h3 {
   height: 80px;
 }
 
-.action-button-list button {
+.action-button-list .button-action {
   min-width: 180px;
   min-height: 90px;
   font-size: 1.5em;
   font-weight: bold;
   line-height: 25px;
   flex-grow: auto;
-  margin: 0 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
 }
 
-.action-button-list i {
-  font-size: 36px;
-}
-.action-button-list button.portion-2{
-  flex:2 1
-}
-.action-button-list button.portion-1{
-  flex:1 1
+.action-button-list svg {
+  font-size: 2em;
 }
 
 main.main-content .detail img{
@@ -830,7 +829,7 @@ form.profile-info div.button-list button {
 
 .delete-checker {
   height: 100%;
-  display: flex;
+  display: flex !important;
   justify-content: center;
   align-items: center;
 }
@@ -1208,5 +1207,16 @@ div.break {
   }
   .numberManipulation button {
     font-size: 1.5em;
+  }
+
+  header.home-header .header-content button.vehicle-search {
+    width: 100% ;
+  }
+
+  .transaction-info {
+    font-size: 1em !important;
+  }
+  .code-info {
+    font-size: 1.25em !important;
   }
 }
