@@ -77,7 +77,7 @@ export const VehicleList = () => {
       document.getElementById('searchFilter').elements["order"].value = order
     }
     if(idCategory){
-      document.getElementById('searchFilter').elements["idCategory"].value = idCategory
+      document.getElementById('searchFilter').elements["category"].value = idCategory
     }
 
     getList(url)
@@ -140,7 +140,7 @@ export const VehicleList = () => {
                       <h2>{title}</h2>
                   </div>
               </div>
-              <div>
+              <section className='searchBar mb-5'>
                 <form id='searchFilter' className='' onSubmit={onSearch}>
                   <div className='row mb-2'>
                     <input className='form-control' type="text" name="search" placeholder='Search by vehicle name / color / location' />
@@ -195,13 +195,13 @@ export const VehicleList = () => {
                     <button className='btn-primary' type="submit">Search</button>
                   </div>
                 </form>
-              </div>
+              </section>
               <div className='row mb-3'>
                 {
                   responseStatus === 200 && 
                   list.map((obj, idx) => (   
-                    <div className='col-sm-6 col-md-4 col-lg-3'>
-                      <Link key={obj.id} to={`/vehicle/${obj.id}`}>
+                    <div key={obj.id} className='col-sm-6 col-md-4 col-lg-3'>
+                      <Link to={`/vehicle/${obj.id}`}>
                         <ItemContent key={`items-${idx}`} image={obj.image || NoImageIcon} name={obj.name} location={obj.location} />
                       </Link>
                     </div>

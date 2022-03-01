@@ -88,8 +88,8 @@ export const Home = () => {
               <div className='row text-center'>
                   {
                     popular.map((obj, idx) => (   
-                      <div className='col-sm-6 col-lg-3'>
-                        <Link key={obj.id} to={`/vehicle/${obj.id}`}>
+                      <div key={obj.id} className='col-sm-6 col-lg-3'>
+                        <Link to={`/vehicle/${obj.id}`}>
                           <ItemContent key={`items-${idx}`} image={obj.image} name={obj.name} location={obj.location} />
                         </Link>
                       </div>
