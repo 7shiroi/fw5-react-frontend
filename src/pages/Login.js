@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Footer from '../components/Footer'
 import googleIcon from '../assets/images/google-login-icon.png'
 import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 
 export default class Login extends Component {
   constructor(props) {
@@ -49,12 +50,12 @@ export default class Login extends Component {
                   <h1 className="pt-5 mt-5">Let's Explore<br />The World</h1>
                   <div className="other-action-xl">
                     <p className="mt-5">Don't have account?</p>
-                    <Link className="btn-dark mt-3" to="/register">Sign Up</Link>
+                    <Link className="mt-3" to="/register"><Button className="btn other-action-btn btn-dark">Sign Up</Button></Link>
                   </div>
                 </div>
                 <div className="container-fluid other-action d-none">
                   <p className="mt-5">Don't have account?</p>
-                  <Link className="btn-dark mt-3" to="/register">Sign Up</Link>
+                    <Link className="mt-3" to="/register"><Button className="btn other-action-btn btn-dark">Sign Up</Button></Link>
                 </div>
                 <div className="separation-line h-100 d-flex flex-column justify-content-center align-items-center">
                   <div className="white-dot"></div>
@@ -70,15 +71,15 @@ export default class Login extends Component {
                       <input className="mb-3" type="password" placeholder="Password"value={this.state.password} onChange={this.handleChangePassword} required />
                     </div>
                     <div>
-                      <Link className="mb-5 d-block" to="/forgotPassword">Forgot password?</Link>
+                      <Link className="mb-5 d-block" to="/forgot-password">Forgot password?</Link>
                     </div>
                     <div>
-                      <button className="btn-primary mb-4" type="submit">Login</button>
+                      <Button className="btn-auth-action btn-primary mb-4" type="submit">Login</Button>
                     </div>
                     <div>
-                      <button className="btn-login-google">
+                      <Button className="btn-auth-action btn-login-google">
                         <img className="google-login-icon" src={googleIcon} alt="google-login-icon" /> Login with Google
-                      </button>
+                      </Button>
                     </div>
                   </form>
                 </div>

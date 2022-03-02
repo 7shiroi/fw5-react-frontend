@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Footer from '../components/Footer'
 import googleIcon from '../assets/images/google-login-icon.png'
+import { Link } from 'react-router-dom';
+import Button from '../components/Button';
 
 export default class Register extends Component {
   constructor(props) {
@@ -38,12 +40,12 @@ export default class Register extends Component {
                   <h1 className="pt-5 mt-5">Let's Explore<br />The World</h1>
                   <div className="other-action-xl">
                     <p className="mt-5">Already have account?</p>
-                    <button className="btn-dark mt-3" onClick={() => this.goToLoginNext()}>Login</button>
+                      <Link className="mt-3" to="/login"><Button className="btn other-action-btn btn-dark">Login</Button></Link>
                   </div>
                 </div>
                 <div className="container-fluid other-action d-none">
                   <p className="mt-5">Already have account?</p>
-                  <button className="btn-dark mt-3" onClick={this.goToLoginNext}>Login</button>
+                  <Link className="mt-3" to="/login"><Button className="btn other-action-btn btn-dark">Login</Button></Link>
                 </div>
                 <div className="separation-line h-100 d-flex flex-column justify-content-center align-items-center">
                   <div className="white-dot"></div>
@@ -62,10 +64,10 @@ export default class Register extends Component {
                       <input className="mb-3" type="password" placeholder="Password"value={this.state.password} onChange={this.handleChangePassword} required />
                     </div>
                     <div>
-                      <button className="btn-primary mb-4" type="submit">Sign Up</button>
+                      <button className="btn-auth-action btn-primary mb-4" type="submit">Sign Up</button>
                     </div>
                     <div>
-                      <button className="btn-login-google">
+                      <button className="btn-auth-action btn-login-google">
                         <img className="google-login-icon" src={googleIcon} alt="google-login-icon" /> Login with Google
                       </button>
                     </div>

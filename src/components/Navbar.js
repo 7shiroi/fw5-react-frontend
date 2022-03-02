@@ -3,6 +3,7 @@ import logo from '../assets/images/logo.png'
 import emailIcon from '../assets/images/email-icon.png'
 import profilePicture from '../assets/images/profile-samantha.png'
 import { Link } from 'react-router-dom'
+import Button from './Button'
 
 export default class Navbar extends Component {
   goToVehicleTypeNext() {
@@ -48,9 +49,9 @@ export default class Navbar extends Component {
                 }
                 {
                   !this.props.isLoggedIn &&             
-                  <div>
-                    <Link className="btn-outline-primary me-3" to="/login">Login</Link>
-                    <Link className="btn-primary" to="/register">Register</Link>
+                  <div className='d-flex flex-column flex-lg-row align-items-lg-center'>
+                      <Link className="me-lg-3 mb-3 mb-lg-0" to="/login"><Button className="btn btn-navbar btn-outline-primary">Login</Button></Link>
+                      <Link className="" to="/register"><Button className="btn btn-navbar btn-primary">Register</Button> </Link>
                   </div>
                 }
             </div>

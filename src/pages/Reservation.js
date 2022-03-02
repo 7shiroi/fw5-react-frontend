@@ -61,7 +61,7 @@ export const Reservation = () => {
             </div>
           </div>
           <div className='row justify-content-center'>
-            <button className='btn-primary payment'>Pay now: <NumberFormat value={detailData.price*quantity*rentDuration} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={"Rp. "} /> </button>
+            <Link to="/payment" className='btn-primary payment'>Pay now: <NumberFormat value={detailData.price*quantity*rentDuration} displayType={'text'} thousandSeparator={'.'} decimalSeparator={','} prefix={"Rp. "} /> </Link>
           </div>
       </div>
     </main>

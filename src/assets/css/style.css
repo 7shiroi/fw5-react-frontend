@@ -1,6 +1,8 @@
 :root {
   --primary: #1C658C;
   --secondary: #398AB9;
+  --primary-softer: #1572A1;
+  --secondary-softer: #9AD0EC;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -9,6 +11,11 @@ h1, h2, h3, h4, h5, h6 {
 
 .payment {
   height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-weight: 700;
 }
 
 .testimony .star {
@@ -31,8 +38,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .item-contents .content-image {
-  max-width: 280px;
-  max-height: 280px;
+  background-color: white;
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
 }
 
 nav.navbar {
@@ -44,10 +56,11 @@ nav.navbar .navbar-brand img {
   height: 78px;
 }
 
-nav.navbar button{
-  width: 12em;
-  height: 44px;
+.btn-navbar {
+  width: 10em;
+  height: 3em;
 }
+
 
 .numberManipulation {
   font-size: 1.5em;
@@ -94,12 +107,18 @@ header.login-header p {
   line-height: 33px;
 }
 
-header.login-header div.intro button {
-  width: 390px;
-  height: 5rem;
-  font-weight: 900;
-  font-size: 1.5em;
+.other-action-btn {
+  display: block;
+  text-align: center;
+  width: 12em;
+  height: 3em;
+  font-weight: 900 !important;
+  font-size: 1.25em !important;
   line-height: 2em;
+}
+
+.btn {
+  text-decoration: none;
 }
 
 
@@ -120,8 +139,8 @@ header.login-header div.separation-line div.white-line {
 }
 
 header.login-header div.login-info input{
-  width: 448px;
-  height: 80px;
+  width: 18.5em;
+  height: 3em;
   border: none;
   background: rgba(255, 255, 255, 0.26);
   border-radius: 10px;
@@ -148,9 +167,9 @@ header.login-header div.login-info a {
 
 }
 
-header.login-header div.login-info button {
-  width: 446px;
-  height: 80px;
+header.login-header div.login-info .btn-auth-action {
+  width: 18.5em;
+  height: 3em;
   font-weight: 900;
   font-size: 1.5em;
   line-height: 2em;
@@ -391,13 +410,24 @@ nav .navbar-brand {
 }
 
 .btn-primary {
-  border-radius: 8px;
-  background-color: var(--primary);
+  border-radius: 8px !important;
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-softer) !important;
 }
 
 .btn-outline-primary {
-  border-radius: 8px;
-  outline: var(--primary);
+  border-radius: 8px !important;
+  border-color: var(--primary) !important;
+  color: var(--primary) !important;
+}
+
+.btn-outline-primary:hover {
+  background-color: var(--primary) !important;
+  color: white !important;
 }
 
 .btn-secondary {
@@ -880,12 +910,12 @@ main.main-content .delete-selected-button {
   font-weight: bold;
 }
 
-/* header.header-forgot-password {
+header.header-forgot-password {
   height: 47.5em;
-  background-image: url('../assets/images/bg-forgot-password.png');
+  background-image: url('../images/bg-forgot-password.png');
   background-repeat: no-repeat;
   background-size: cover;
-} */
+}
 
 header.header-forgot-password .header-content {
   background-color: rgba(0, 0, 0, 0.7);
@@ -990,9 +1020,14 @@ div.break {
     justify-content: center !important;
   }
 
-  header.login-header .auth-contents button {
+  button.other-action-btn {
     width: 100% !important;
-    height: 2em !important;
+    font-size: 1.25em !important;
+  }
+
+  header.login-header .auth-contents .btn-auth-action {
+    width: 100% !important;
+    height: 2.5em !important;
     font-size: 1em !important;
   }
 
@@ -1015,6 +1050,10 @@ div.break {
     display: block !important;
     order: 3;
   }
+
+
+
+
   header.login-header .auth-contents a {
     margin-bottom: 1em !important;
     font-size: .75em !important;
@@ -1053,7 +1092,7 @@ div.break {
     height: auto;
     margin: 60px 16px;  
   }
-  nav.navbar button {
+  .btn-navbar {
     width: 8em;
   }
 
