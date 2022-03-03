@@ -5,9 +5,13 @@ import Footer from '../components/Footer'
 import ItemContent from '../components/ItemContent'
 import NoImageIcon from '../assets/images/no-image-icon.png'
 import Navbar from '../components/Navbar'
+import { connect, useDispatch, useSelector } from 'react-redux'
+import {getVehicles, getVehiclesNext} from '../redux/actions/vehicles'
 
 export const VehicleList = () => {
   const {REACT_APP_LIMIT_ITEMS: limit} = process.env
+  const {vehicles} = useSelector(state => state)
+  const dispatch = useDispatch()
 
   const {category} = useParams()
   
@@ -24,16 +28,12 @@ export const VehicleList = () => {
     if (!category){
       url = `http://localhost:5000/vehicle?limit=${limit}`
     }else if (category === 'popular'){
-      url = `http://localhost:5000/vehicle/popular?limit=${limit}`
       setTitle("Popular in Town List")
     }else if (category === 'cars') {
-      url = `http://localhost:5000/vehicle/category/1?limit=${limit}`
       setTitle("Cars List")
     }else if (category === 'motorbikes') {
-      url = `http://localhost:5000/vehicle/category/3?limit=${limit}`
       setTitle("Motorbikes List")
     }else if (category === 'bikes') {
-      url = `http://localhost:5000/vehicle/category/2?limit=${limit}`
       setTitle("Bikes List")
     }    
     if(queryParams){
@@ -41,6 +41,10 @@ export const VehicleList = () => {
     }
     return url
   }
+
+  useEffect(()=>{
+    console.log(vehicles)
+  },[vehicles])
 
   useEffect(() => {
     const search = searchParams.get('search')
@@ -80,7 +84,9 @@ export const VehicleList = () => {
       document.getElementById('searchFilter').elements["category"].value = idCategory
     }
 
-    getList(url)
+    // getList(url)
+    // getVehicles(category, queryString)
+    dispatch(getVehicles(category, queryString))
     getCategoryList()
   }, [])
 
@@ -99,13 +105,14 @@ export const VehicleList = () => {
   }
   
   const getNextData = async (url) => {
-    const {data} = await axios.get(url)
-    
-    setList([
-        ...list,
-        ...data.result
-    ])
-    setPageInfo(data.pageinfo)
+    // const {data} = await axios.get(url)
+    dispatch(getVehiclesNext(url))
+
+    // setList([
+    //     ...list,
+    //     ...data.result
+    // ])
+    // setPageInfo(data.pageinfo)
   }
 
   const getCategoryList = async () => {
@@ -126,7 +133,9 @@ export const VehicleList = () => {
     const queryString = '&'+JSON.stringify(data).replaceAll('"', "").replaceAll(',','&').replaceAll(':', '=').replaceAll(' ', '%20').replaceAll('{', '').replaceAll('}', '')
     const url = makeUrl(queryString)
     setSearchParams(data)
-    await getList(url)
+    // await getList(url)
+    dispatch(getVehicles(category, queryString))
+    // getVehicles(category, queryString)
   }
 
   return (
@@ -198,8 +207,7 @@ export const VehicleList = () => {
               </section>
               <div className='row mb-3'>
                 {
-                  responseStatus === 200 && 
-                  list.map((obj, idx) => (   
+                  vehicles.data.map((obj, idx) => (   
                     <div key={obj.id} className='col-sm-6 col-md-4 col-lg-3'>
                       <Link to={`/vehicle/${obj.id}`}>
                         <ItemContent key={`items-${idx}`} image={obj.image || NoImageIcon} name={obj.name} location={obj.location} />
@@ -215,9 +223,9 @@ export const VehicleList = () => {
                 }
               </div>
               {
-                pageInfo.next &&
+                vehicles.pageInfo.next &&
                 <div className='row d-flex justify-content-center'>
-                  <button className='btn-primary' onClick={() => getNextData(pageInfo.next)}>Load more</button>
+                  <button className='btn-primary' onClick={() => getNextData(vehicles.pageInfo.next)}>Load more</button>
                 </div>
               }
             </section>
@@ -228,5 +236,8 @@ export const VehicleList = () => {
   )
 }
 
+// const mapStateToProps = state => ({vehicles: state.vehicles})
+// const mapDispatchToProps = {getVehicles}
 
+// export default connect(mapStateToProps, mapDispatchToProps)(VehicleList)
 export default VehicleList
