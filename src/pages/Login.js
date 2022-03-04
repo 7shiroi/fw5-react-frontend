@@ -1,23 +1,25 @@
 import React, { Component } from 'react'
 import Footer from '../components/Footer'
 import googleIcon from '../assets/images/google-login-icon.png'
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import Button from '../components/Button';
 import {login as LoginDispatch} from '../redux/actions/auth'
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
-export const Login = ({auth, LoginDispatch}) => {
+export const Login = () => {
+  const auth = useSelector(state => state.auth);
+  const dispatch = useDispatch()
   const handleSubmit = (e) => {
+    e.preventDefault();
     const username = e.target.elements["username"].value
     const password = e.target.elements["password"].value
 
-    LoginDispatch(username,password)
-
-
-    e.preventDefault();
+    dispatch(LoginDispatch(username,password))
   }
   return (
     <>
+    {console.log(auth)}
+      {auth.token!==null && <Navigate to="/" />}
       <header className="login-header">
         <div className="darken-bg">
           <div className="container h-100">
@@ -40,6 +42,12 @@ export const Login = ({auth, LoginDispatch}) => {
               </div>
               <div className="d-flex flex-column h-100 justify-content-center login-info">
                 <form className="container-fluid" onSubmit={(e) => handleSubmit(e)}>
+                  {
+                    auth.error &&
+                    <div className="alert alert-danger fade show" role="alert">
+                      <strong>{auth.errorMsg}</strong>
+                    </div>
+                  }
                   <div>
                     <input id='username' name='username' className="mb-4" type="text" placeholder="Username" required />
                   </div>
@@ -50,7 +58,7 @@ export const Login = ({auth, LoginDispatch}) => {
                     <Link className="mb-5 d-block" to="/forgot-password">Forgot password?</Link>
                   </div>
                   <div>
-                    <Button className="btn-auth-action btn-primary mb-4" type="submit">Login</Button>
+                    <Button disabled={auth.isLoading} className="btn-auth-action btn-primary mb-4" type="submit">Login</Button>
                   </div>
                   <div>
                     <Button className="btn-auth-action btn-login-google">
@@ -69,7 +77,4 @@ export const Login = ({auth, LoginDispatch}) => {
   )
 }
 
-const mapStatetoProps = state => ({auth:state.auth})
-const mapDispatchToProps = {LoginDispatch}
-
-export default connect(mapStatetoProps, mapDispatchToProps)(Login)
+export default Login

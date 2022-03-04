@@ -1,4 +1,5 @@
 import {combineReducers} from 'redux'
+import auth from './auth'
 
 const initialState = {
   token: null,
@@ -14,34 +15,7 @@ const vehiclesState = {
 }
 
 const rootReducer = combineReducers({
-  auth: (state=initialState, action) => {
-    switch(action.type){
-      case 'LOGIN_PENDING': {
-        state.isLoading = true
-        return state
-      }
-      case 'LOGIN_FULFILLED': {
-        state.isLoading = false
-        if(action.payload.status === 200){
-          state.token = action.payload.data.token
-        }else{
-          state.error = true
-        }
-        return state
-      }
-      case 'LOGIN_REJECTED': {
-        state.isLoading = false
-        state.error = true
-        return state
-      }
-      case 'LOGOUT': {
-        return state
-      }
-      default: {
-        return state
-      }
-    }
-  },
+  auth,
 
   vehicles: (state=vehiclesState, action) => {
     switch(action.type){

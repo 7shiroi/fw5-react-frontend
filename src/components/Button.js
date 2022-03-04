@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export default class Button extends Component {
-  render() {
-    return (
-      <button className={this.props.className}>
-        {this.props.children}
-      </button>
-    )
-  }
+export const Button = ({children, ...rest}) => {
+  return (
+    <button {...rest}>
+      {children}
+    </button>
+  )
 }
+
+export default Button

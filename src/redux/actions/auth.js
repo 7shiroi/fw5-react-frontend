@@ -1,14 +1,11 @@
-import {default as axios} from 'axios'
-const {REACT_APP_BACKEND_HOST: backendHost} = process.env
+import http from '../../helpers/http'
 
 export const login = (username, password) => {
-  const loginInfo = {username, password}
+  const params = new URLSearchParams()
+  params.append('username', username)
+  params.append('password', password)
   return {
     type: 'LOGIN',
-    // payload: axios.post(`${backendHost}auth/login`,{loginInfo})
-    payload: axios({
-      method: 'post',
-      url: `${backendHost}auth/login`,
-      data: {loginInfo}})
+    payload: http().post('auth/login', params)
   }
 }
