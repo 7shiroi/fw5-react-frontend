@@ -4,22 +4,38 @@ import lamboSouthJkt from '../assets/images/image-main-content-lambo-south-jakar
 import whiteJeepKalimantan from '../assets/images/image-main-content-white-jeep-kalimantan.png'
 import vespaMatic from '../assets/images/history-vespa-matic.png'
 import { useNavigate } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
+import { getHistories } from '../redux/actions/histories'
 
 export const History = () => {
   const navigate = useNavigate()
   const auth = useSelector(state => state.auth)
+  const transaction = useSelector(state => state.transaction)
+  const dispatch = useDispatch()
 
   useEffect(()=> {
     if(!auth.token){
-      window.alert('Please login first')
-      navigate('/login')
+      if(window.localStorage.getItem('token')){
+        navigate('/')
+      }else{
+        window.alert('Please login first')
+        navigate('/login')
+      }
+    }else{
+      window.scrollTo(0,0)
+      dispatch(getHistories(auth.token))
     }
   }, [])
   return (
     <Layout>
       <main className="main-content">
         <div className="container">
+          {
+            transaction.message === "History data created" &&
+            <div class="alert alert-primary" role="alert">
+              Your transaction has been recorded
+            </div>
+          }
           <div className="row">
             <section className="col-12 col-xxl-8 d-flex flex-column justify-content-between px-5">
               <div className="row history">
@@ -91,7 +107,6 @@ export const History = () => {
                       </div>
                     </div>
                   </div>
-
                 </div>
                 <div className="col-2">
                   <div className="delete-checker form-check">

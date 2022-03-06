@@ -9,6 +9,20 @@ h1, h2, h3, h4, h5, h6 {
   font-family: 'Playfair Display', sans-serif;
 }
 
+input.otp::-webkit-outer-spin-button,
+input.otp::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input.otp[type=number] {
+  -moz-appearance: textfield;
+}
+
+input.otp[type=number] {
+  font-size: 1em;
+}
+
 .payment {
   height: 3em;
   display: flex;

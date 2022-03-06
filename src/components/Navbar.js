@@ -2,7 +2,7 @@ import React from 'react'
 import logo from '../assets/images/logo.png'
 import emailIcon from '../assets/images/email-icon.png'
 import profilePicture from '../assets/images/profile-samantha.png'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Button from './Button'
 import NoProfilePicture from '../assets/images/no-profile-picture.png'
 import { useDispatch, useSelector } from 'react-redux'
@@ -10,11 +10,13 @@ import { useDispatch, useSelector } from 'react-redux'
 export const Navbar = () => {
   const auth = useSelector(state => state.auth)
   const dispatch = useDispatch()
+  const navigate = useNavigate()
 
   const logout = () => {
     dispatch({
       type: "LOGOUT"
     })
+    navigate('/login')
   }
 
   return (
@@ -44,13 +46,14 @@ export const Navbar = () => {
             auth.token && 
             <div className='d-flex align-items-center justify-content-between'>
               <div>
-                <a href="/history"><img className="email-icon" src={emailIcon} alt="email-icon" /></a>
+                <a href="#"><img className="email-icon" src={emailIcon} alt="email-icon" /></a>
               </div>
               <div className='dropdown'>
                 <img className="profile-icon dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"
                   src={auth.userData.picture ? auth.userData.picture : NoProfilePicture} alt="profile picture" />
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
+                  {!auth.userData.is_verified && <li><Link className="dropdown-item" to="/verify-user">Verify this account</Link></li>}
                   <li><Button className="dropdown-item" to="/logout" onClick={logout}>Logout</Button></li>
                 </ul>
               </div>

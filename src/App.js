@@ -15,6 +15,7 @@ import Profile from './pages/Profile';
 import PageNotFound from './pages/PageNotFound';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from './redux/actions/auth';
+import VerifyUser from './pages/VerifyUser';
 
 export const App = () => {
   const auth = useSelector(state => state.auth)
@@ -52,6 +53,7 @@ export const App = () => {
           <Route path='/payment' element={<Payment />} />
           <Route path='/history' element={<History />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/verify-user' element={<VerifyUser />} />
       </Routes>
     </BrowserRouter>
   )

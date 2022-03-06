@@ -3,7 +3,8 @@ const initialState = {
   userData: {},
   isLoading: false,
   error: false,
-  errorMsg: ''
+  errorMsg: '',
+  message: ''
 }
 
 const auth = (state=initialState, action) => {
@@ -29,6 +30,25 @@ const auth = (state=initialState, action) => {
       state.errorMsg = data.message
       return {...state}
     }
+    case 'REGISTER_PENDING': {
+      state.error = false
+      state.isLoading = true
+      state.message = ''
+      return {...state}
+    }
+    case 'REGISTER_FULFILLED': {
+      const {data} = action.payload
+      state.isLoading = false
+      state.message = data.message
+      return {...state}
+    }
+    case 'REGISTER_REJECTED': {
+      const {data} = action.payload.response
+      state.isLoading = false
+      state.error = true
+      state.errorMsg = data.message || data.error
+      return {...state}
+    }
     case 'GET_PROFILE_PENDING':{
       state.error = false
       state.isLoading = true
@@ -47,9 +67,31 @@ const auth = (state=initialState, action) => {
       state.errorMsg = data.message
       return {...state}
     }
+    case 'VERIFY_USER_PENDING':{
+      state.error = false
+      state.isLoading = true
+      state.message = ''
+      return {...state}
+    }
+    case 'VERIFY_USER_FULFILLED':{
+      const {data} = action.payload
+      state.isLoading = false
+      state.message = data.message      
+      return {...state}
+    }
+    case 'VERIFY_USER_REJECTED': {
+      const {data} = action.payload.response
+      state.isLoading = false
+      state.error = true
+      state.errorMsg = data.message
+      return {...state}
+    }
     case 'LOGOUT': {
       state.token = null
       state.userData = {}
+      state.error = false
+      state.message = ''
+      state.errorMsg = ''
       window.localStorage.removeItem('token')
       return {...state}
     }

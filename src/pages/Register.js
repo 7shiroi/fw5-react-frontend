@@ -1,37 +1,35 @@
-import React, { Component } from 'react'
+import React from 'react'
 import Footer from '../components/Footer'
 import googleIcon from '../assets/images/google-login-icon.png'
-import { Link } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import Button from '../components/Button';
+import { useDispatch, useSelector } from 'react-redux';
+import { register } from '../redux/actions/auth';
 
-export default class Register extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {email: '', password: '', name: ''};
+export const Register = () => {
+  const auth = useSelector(state => state.auth)
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
 
-    this.handleChangeName = this.handleChangeName.bind(this);
-    this.handleChangeEmail = this.handleChangeEmail.bind(this);
-    this.handleChangePassword = this.handleChangePassword.bind(this);
+  const onRegister = (event) => {
+    event.preventDefault()
+    const name = event.target.elements["name"].value
+    const username = event.target.elements["username"].value
+    const email = event.target.elements["email"].value
+    const password = event.target.elements["password"].value
+    const confirmPassword = event.target.elements["confirmPassword"].value
+
+    const data = {
+      name, username, email, password, confirmPassword,
+    }
+
+    dispatch(register(data))
+    navigate('/login')
   }
 
-  
-  handleChangeName(event) {
-    this.setState({name: event.target.value});
-  }
-  handleChangeEmail(event) {
-    this.setState({email: event.target.value});
-  }
-  handleChangePassword(event) {
-    this.setState({password: event.target.value});
-  }
-
-  goToLoginNext () {
-    this.props.nextPage("Login")
-  }
-
-  render() {
-    return (
-      <>
+  return (
+    <>
+      {auth.token && <Navigate to="/" />}
         <header className="login-header">
           <div className="darken-bg">
             <div className="container h-100">
@@ -53,15 +51,21 @@ export default class Register extends Component {
                   <div className="white-dot"></div>
                 </div>
                 <div className="d-flex flex-column h-100 justify-content-center login-info">
-                  <form className="container-fluid">
+                  <form className="container-fluid" onSubmit={(e) => onRegister(e)} >
                     <div>
-                      <input id='name' className="mb-4" type="text" placeholder="Name" value={this.state.name} onChange={this.handleChangeName} required />
+                      <input name='name' className="mb-4" type="text" placeholder="Name" required />
                     </div>
                     <div>
-                      <input id='email' className="mb-4" type="email" placeholder="Email" value={this.state.email} onChange={this.handleChangeEmail} required />
+                      <input name='username' className="mb-4" type="text" placeholder="Username" required />
                     </div>
                     <div>
-                      <input className="mb-3" type="password" placeholder="Password"value={this.state.password} onChange={this.handleChangePassword} required />
+                      <input name='email' className="mb-4" type="email" placeholder="Email" required />
+                    </div>
+                    <div>
+                      <input name='password' className="mb-4" type="password" placeholder="Password" required />
+                    </div>
+                    <div>
+                      <input name='confirmPassword' className="mb-4" type="password" placeholder="Confirm Password" required />
                     </div>
                     <div>
                       <button className="btn-auth-action btn-primary mb-4" type="submit">Sign Up</button>
@@ -80,6 +84,7 @@ export default class Register extends Component {
         </header>
         <Footer />
       </>
-    )
-  }
+  )
 }
+
+export default Register

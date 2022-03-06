@@ -47,6 +47,12 @@ export const Login = () => {
                       <strong>{auth.errorMsg}</strong>
                     </div>
                   }
+                  {
+                    auth.message === "Register successful" &&
+                    <div className="alert alert-primary fade show" role="alert">
+                      <strong>{auth.message}</strong>
+                    </div>
+                  }
                   <div>
                     <input id='username' name='username' className="mb-4" type="text" placeholder="Username" required />
                   </div>

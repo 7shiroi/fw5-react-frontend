@@ -5,7 +5,6 @@ export const transaction = (token, data) =>{
   for (const key in data){
     params.append(key, data[key])
   }
-  console.log(data)
   return({
     type: 'RENT_TRANSACTION',
     payload: http(token).post('history', params)
