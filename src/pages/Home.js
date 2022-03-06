@@ -5,16 +5,25 @@ import ItemContent from '../components/ItemContent'
 import Layout from '../components/Layout'
 import {FaStar} from 'react-icons/fa'
 import testimonyImage from '../assets/images/image-main-content-testimonial-user.png'
+import { useDispatch, useSelector } from 'react-redux'
+import { getProfile } from '../redux/actions/auth'
 
 export const Home = () => {
   const [popular, setPopular] = useState([])
   const [category, setCategory] = useState([])
   const navigate = useNavigate()
+  const auth = useSelector(state => state.auth)
+  const dispatch = useDispatch()
 
   useEffect(() => {
     getPopular();
     getCategory();
+    
+    if(auth.token){
+      dispatch(getProfile(auth.token))
+    }
   }, [])
+
 
   const getPopular = async () => {
     const {data} = await axios.get('http://localhost:5000/vehicle/popular?limit=4')
@@ -29,7 +38,7 @@ export const Home = () => {
     event.preventDefault();
     const search = event.target.elements["search"].value
     const category = event.target.elements["category"].value
-    const data={search, category}
+    const data={search, idCategory: category}
     const queryString = JSON.stringify(data).replaceAll('"', "").replaceAll(',','&').replaceAll(':', '=').replaceAll(' ', '%20').replaceAll('{', '').replaceAll('}', '')
     console.log(queryString)
     navigate(`/vehicles/search?${queryString}`)

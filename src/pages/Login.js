@@ -3,7 +3,7 @@ import Footer from '../components/Footer'
 import googleIcon from '../assets/images/google-login-icon.png'
 import { Link, Navigate } from 'react-router-dom';
 import Button from '../components/Button';
-import {login as LoginDispatch} from '../redux/actions/auth'
+import {getProfile, login as LoginDispatch} from '../redux/actions/auth'
 import { useSelector, useDispatch } from 'react-redux';
 
 export const Login = () => {
@@ -18,8 +18,7 @@ export const Login = () => {
   }
   return (
     <>
-    {console.log(auth)}
-      {auth.token!==null && <Navigate to="/" />}
+      {auth.token && <Navigate to="/" />}
       <header className="login-header">
         <div className="darken-bg">
           <div className="container h-100">

@@ -13,26 +13,26 @@ import Payment from './pages/Payment';
 import History from './pages/History';
 import Profile from './pages/Profile';
 import PageNotFound from './pages/PageNotFound';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { getProfile } from './redux/actions/auth';
 
 export const App = () => {
+  const auth = useSelector(state => state.auth)
   const history = createBrowserHistory({window})
   const dispatch = useDispatch()
 
   useEffect(() => {
     const token = window.localStorage.getItem("token")
-    if(token) {
+    if(token && auth.token === null) {
       dispatch({
         type: "LOGIN_FULFILLED",
         payload: {
           data: {
-            result: {
-              token
-            }
+            result: token
           }
         }
       })
-      // dispatch(getDataUser(token))
+      dispatch(getProfile(token))
     }
   }, [dispatch])
 
@@ -48,7 +48,7 @@ export const App = () => {
           <Route path='/vehicle/:id' element={<DetailVehicle />} />
           <Route path='/vehicles/search' element={<VehicleList />} />
           <Route path='/vehicles/:category' element={<VehicleList />} />
-          <Route path='/reservation/:id' element={<Reservation />} />
+          <Route path='/reservation' element={<Reservation />} />
           <Route path='/payment' element={<Payment />} />
           <Route path='/history' element={<History />} />
           <Route path='/profile' element={<Profile />} />

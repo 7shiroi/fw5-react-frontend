@@ -1,10 +1,21 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Layout from '../components/Layout'
 import lamboSouthJkt from '../assets/images/image-main-content-lambo-south-jakarta.png'
 import whiteJeepKalimantan from '../assets/images/image-main-content-white-jeep-kalimantan.png'
 import vespaMatic from '../assets/images/history-vespa-matic.png'
+import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 
 export const History = () => {
+  const navigate = useNavigate()
+  const auth = useSelector(state => state.auth)
+
+  useEffect(()=> {
+    if(!auth.token){
+      window.alert('Please login first')
+      navigate('/login')
+    }
+  }, [])
   return (
     <Layout>
       <main className="main-content">

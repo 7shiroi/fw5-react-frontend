@@ -4,6 +4,7 @@ import emailIcon from '../assets/images/email-icon.png'
 import profilePicture from '../assets/images/profile-samantha.png'
 import { Link } from 'react-router-dom'
 import Button from './Button'
+import NoProfilePicture from '../assets/images/no-profile-picture.png'
 import { useDispatch, useSelector } from 'react-redux'
 
 export const Navbar = () => {
@@ -47,7 +48,7 @@ export const Navbar = () => {
               </div>
               <div className='dropdown'>
                 <img className="profile-icon dropdown-toggle" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"
-                  src={profilePicture} alt="profile picture" />
+                  src={auth.userData.picture ? auth.userData.picture : NoProfilePicture} alt="profile picture" />
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <li><Link className="dropdown-item" to="/profile">Profile</Link></li>
                   <li><Button className="dropdown-item" to="/logout" onClick={logout}>Logout</Button></li>

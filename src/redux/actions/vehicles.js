@@ -1,4 +1,5 @@
 import {default as axios} from 'axios'
+import http from '../../helpers/http'
 const {REACT_APP_BACKEND_HOST: backendHost} = process.env
 
 export const getVehicles = (category=null, searchQuery=null, limit = process.env.REACT_APP_LIMIT_ITEMS) => {
