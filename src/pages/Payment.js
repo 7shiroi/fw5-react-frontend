@@ -31,7 +31,6 @@ export const Payment = () => {
       window.scrollTo(0,0)
       const start = new Date(transaction.reservationDate)
       const end = addDays(start, parseInt(transaction.rentDuration) - 1)
-      console.log(start)
       const months = ["January","February","March","April","May","June","July","August","September","October","November","December"];
 
       if(start.getFullYear() === end.getFullYear()){
@@ -65,9 +64,13 @@ export const Payment = () => {
       quantity: transaction.quantity,
       date_start: startDate,
       date_end: endDate,
-      prepayment: detailVehicle.data.has_prepayment ? detailVehicle.data.price*(20/100)*transaction.quantity*transaction.rentDuration : 0,
+      prepayment: detailVehicle.data.has_prepayment ? (detailVehicle.data.price*(20/100)*transaction.quantity*transaction.rentDuration).toFixed(2) : 0,
     }
+    console.log(data)
     dispatch(rentTransaction(auth.token, data))
+    dispatch({
+      type: "CLEAR_TRANSACTION"
+    })
     navigate('/history')
   }
 

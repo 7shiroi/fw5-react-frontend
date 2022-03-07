@@ -34,6 +34,28 @@ export const verifyUser = (token, otp = null) => {
   }
 }
 
+export const resetPassword = (otp, email, password, confirmPassword) => {
+  const params = new URLSearchParams()
+  params.append('code', otp)
+  params.append('email', email)
+  params.append('password', password)
+  params.append('confirmPassword', confirmPassword)
+  return {
+    type: 'RESET_PASSWORD',
+    payload: http().post('auth/forgotPassword', params)
+  }
+}
+
+export const requestResetPassword = (email) => {
+  const params = new URLSearchParams()
+  params.append('email', email)
+  return {
+    type: 'REQUEST_RESET_PASSWORD',
+    payload: http().post('auth/forgotPassword', params),
+    extra: email,
+  }
+}
+
 export const getProfile = (token)=> {
   return({
     type: 'GET_PROFILE',

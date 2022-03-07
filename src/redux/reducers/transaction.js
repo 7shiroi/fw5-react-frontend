@@ -39,6 +39,9 @@ const transaction = (state=initialState, action) =>{
       state.reservationDate = action.payload.reservationDate
       return {...state}
     }
+    case 'CLEAR_TRANSACTION': {
+      return initialState
+    }
     default: {
       return {...state}
     }

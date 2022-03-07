@@ -16,6 +16,7 @@ import PageNotFound from './pages/PageNotFound';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from './redux/actions/auth';
 import VerifyUser from './pages/VerifyUser';
+import ResetPassword from './pages/ResetPassword';
 
 export const App = () => {
   const auth = useSelector(state => state.auth)
@@ -46,6 +47,7 @@ export const App = () => {
           <Route path='/register' element={<Register />} />
           <Route path='/vehicle-type' element={<VehicleType />} />
           <Route path='/forgot-password' element={<ForgotPassword />} />
+          <Route path='/reset-password' element={<ResetPassword />} />
           <Route path='/vehicle/:id' element={<DetailVehicle />} />
           <Route path='/vehicles/search' element={<VehicleList />} />
           <Route path='/vehicles/:category' element={<VehicleList />} />

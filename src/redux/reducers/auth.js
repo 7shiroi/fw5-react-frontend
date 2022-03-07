@@ -4,7 +4,8 @@ const initialState = {
   isLoading: false,
   error: false,
   errorMsg: '',
-  message: ''
+  message: '',
+  email: '',
 }
 
 const auth = (state=initialState, action) => {
@@ -84,6 +85,49 @@ const auth = (state=initialState, action) => {
       state.isLoading = false
       state.error = true
       state.errorMsg = data.message
+      return {...state}
+    }
+    case 'REQUEST_RESET_PASSWORD_PENDING':{
+      state.error = false
+      state.isLoading = true
+      state.message = ''
+      return {...state}
+    }
+    case 'REQUEST_RESET_PASSWORD_FULFILLED':{
+      const {data} = action.payload
+      state.isLoading = false
+      state.message = data.message
+      return {...state}
+    }
+    case 'REQUEST_RESET_PASSWORD_REJECTED': {
+      const {data} = action.payload.response
+      state.isLoading = false
+      state.error = true
+      state.errorMsg = data.message
+      return {...state}
+    }
+    case 'RESET_PASSWORD_PENDING':{
+      state.error = false
+      state.isLoading = true
+      state.message = ''
+      return {...state}
+    }
+    case 'RESET_PASSWORD_FULFILLED':{
+      const {data} = action.payload
+      state.isLoading = false
+      state.message = data.message
+      state.email = ''
+      return {...state}
+    }
+    case 'RESET_PASSWORD_REJECTED': {
+      const {data} = action.payload.response
+      state.isLoading = false
+      state.error = true
+      state.errorMsg = data.message
+      return {...state}
+    }
+    case 'SET_EMAIL': {
+      state.email = action.payload.email
       return {...state}
     }
     case 'LOGOUT': {

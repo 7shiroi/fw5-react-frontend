@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import lamboSouthJkt from '../assets/images/image-main-content-lambo-south-jakarta.png'
 import whiteJeepKalimantan from '../assets/images/image-main-content-white-jeep-kalimantan.png'
@@ -6,12 +6,16 @@ import vespaMatic from '../assets/images/history-vespa-matic.png'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getHistories } from '../redux/actions/histories'
+import HistoryItems from '../components/HistoryItems'
+import getDisplayDate from '../helpers/getDisplayDate'
 
 export const History = () => {
   const navigate = useNavigate()
   const auth = useSelector(state => state.auth)
   const transaction = useSelector(state => state.transaction)
+  const histories = useSelector(state => state.histories)
   const dispatch = useDispatch()
+  const [listHistory, setListHistory] = useState([])
 
   useEffect(()=> {
     if(!auth.token){
@@ -26,6 +30,21 @@ export const History = () => {
       dispatch(getHistories(auth.token))
     }
   }, [])
+
+  useEffect(()=> {
+    histories.data.map((obj)=> {
+      const displayDate = getDisplayDate(obj.date_start, obj.date_end)
+      const data = {
+        image: obj.image,
+        vehicleName: obj.vehicle_name,
+        rentDate: displayDate,
+        prepayment: obj.prepayment,
+        hasReturned: obj.has_returned,
+      }
+      console.log(data)
+      setListHistory([...listHistory, data])
+    })
+  }, [histories.data])
   return (
     <Layout>
       <main className="main-content">
@@ -91,7 +110,7 @@ export const History = () => {
                 <div className="row g-0 mb-4">
                   <div className="history-title">A week ago</div>
                 </div>
-                <div className="col-10 d-flex">
+                {/* <div className="col-10 d-flex">
                   <div className="row">
                     <div className="col-12 col-md-4">
                       <img className="img-fluid" src={vespaMatic} alt="vespa-matic" />
@@ -114,7 +133,27 @@ export const History = () => {
                       <input type="checkbox" className="form-check-input" name="" id="" value="checkedValue" />
                     </label>
                   </div>
-                </div>
+                </div> */}
+                {
+                  histories.data.map((obj) => {
+                    return (
+                      <div key={String(obj.history_id)} className='px-0 row'>
+                        <div className="col-10">
+                          <HistoryItems 
+                            data={obj}
+                          />
+                        </div>
+                        <div className="col-2">
+                          <div className="delete-checker form-check">
+                            <label className="form-check-label">
+                              <input type="checkbox" className="form-check-input" name="" id="" value="checkedValue" />
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })
+                }
               </div>
               <div className="row py-5">
                 <button className="delete-selected-button btn-primary width-100">Delete selected item</button>

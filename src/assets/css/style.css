@@ -23,6 +23,11 @@ input.otp[type=number] {
   font-size: 1em;
 }
 
+.otpInput {
+  width: 2em !important;
+  height: 2em;
+}
+
 .payment {
   height: 3em;
   display: flex;

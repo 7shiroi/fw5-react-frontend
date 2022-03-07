@@ -37,6 +37,7 @@ export const Reservation = () => {
     dispatch(setReservationDate(event.target.value))
   }
 
+  //todo: create form on inputs
   return (
     <>
       <Layout>
@@ -63,7 +64,7 @@ export const Reservation = () => {
                 </div>
                 <div className="mb-4">
                   <p>Reservation date</p>
-                  <input className='form-control mb-2' name='startDate' type="text" placeholder='Select Date' onFocus={(e) => e.target.type = 'date'} onBlur={(e) => e.target.type = 'text'} onChange={updateReservationDate} required />
+                  <input className='form-control mb-2' name='startDate' type="text" placeholder='Select Date' onFocus={(e) => e.target.type = 'date'} onBlur={(e) => e.target.type = 'text'} onChange={updateReservationDate} required defaultValue={null} />
                   <select className='form-select' name='rentDuration' onChange={updateRentDuration}>
                     <option value="1">1 Day</option>
                     <option value="2">2 Days</option>

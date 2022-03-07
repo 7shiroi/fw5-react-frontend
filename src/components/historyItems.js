@@ -1,16 +1,17 @@
 import React from 'react'
+import getDisplayDate from '../helpers/getDisplayDate'
 import NoImageIcon from '../assets/images/no-image-icon.png'
 
-export const historyItems = ({data}) => {
+export const HistoryItems = ({data}) => {
   return (
     <div className='row'>
-      <div className="col-12 col-md-4">
-        <img className="img-fluid" src={data.image || NoImageIcon} alt="vespa-matic" />
+      <div className="col-12 col-md-5">
+        <img className="img-fluid" src={data.image || NoImageIcon} alt={data.vehicle_name} />
       </div>
-      <div className="col-12 col-md-8 d-flex flex-column justify-content-between">
+      <div className="col-12 col-md-7 d-flex flex-column justify-content-between">
         <div>
-          <div><b>{data.vehicleName}</b></div>
-          <div>{data.rentDate}</div>
+          <div><b>{data.vehicle_name}</b></div>
+          <div>{getDisplayDate(data.date_start, data.date_end)}</div>
         </div>
         <div>
           <div><b>{data.prepayment ? `Prepayment : Rp. ${data.prepayment}` : "No prepayment"}</b></div>
@@ -20,3 +21,5 @@ export const historyItems = ({data}) => {
     </div>
   )
 }
+
+export default HistoryItems
