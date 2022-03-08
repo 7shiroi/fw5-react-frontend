@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import lamboSouthJkt from '../assets/images/image-main-content-lambo-south-jakarta.png'
 import whiteJeepKalimantan from '../assets/images/image-main-content-white-jeep-kalimantan.png'
-import vespaMatic from '../assets/images/history-vespa-matic.png'
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getHistories } from '../redux/actions/histories'
 import HistoryItems from '../components/HistoryItems'
+import { getProfile } from '../redux/actions/auth';
 import getDisplayDate from '../helpers/getDisplayDate'
 
 export const History = () => {
@@ -19,9 +19,19 @@ export const History = () => {
 
   useEffect(()=> {
     if(!auth.token){
-      if(window.localStorage.getItem('token')){
-        navigate('/')
-      }else{
+      const token = window.localStorage.getItem('token')
+      if(token){
+        dispatch({
+          type: "LOGIN_FULFILLED",
+          payload: {
+            data: {
+              result: token
+            }
+          }
+        })
+        dispatch(getProfile(token))
+        dispatch(getHistories(auth.token))
+    }else{
         window.alert('Please login first')
         navigate('/login')
       }
