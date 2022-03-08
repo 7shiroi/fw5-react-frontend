@@ -62,3 +62,16 @@ export const getProfile = (token)=> {
     payload: http(token).get('profile')
   })
 }
+
+export const editProfile = (token, data)=> {
+  const params = new URLSearchParams()
+  params.append('username', data.username)
+  params.append('email', data.email)
+  params.append('address', data.address)
+  params.append('phone_number', data.phone_number)
+  params.append('birth_date', data.birth_date)
+  return({
+    type: 'EDIT_PROFILE',
+    payload: http(token).patch('profile', params)
+  })
+}
