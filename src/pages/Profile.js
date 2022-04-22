@@ -61,7 +61,6 @@ export const Profile = () => {
     const username = e.target.elements['username'].value
     const birth_date = e.target.elements['birth_date'].value
     const picture = image
-    console.log(picture)
 
     const data = {email, address, phone_number, username, birth_date, picture}
     dispatch(editProfile(auth.token, data))
