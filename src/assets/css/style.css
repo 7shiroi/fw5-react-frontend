@@ -5,7 +5,16 @@
   --secondary-softer: #9AD0EC;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.important {
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: 'Playfair Display', sans-serif;
 }
 
@@ -40,11 +49,12 @@ input.otp[type=number] {
 .testimony .star {
   font-size: 2em;
 }
+
 .testimony .star-on {
   color: #FFA534;
 }
 
-.item-contents{
+.item-contents {
   display: flex;
   justify-content: center;
 }
@@ -95,6 +105,7 @@ nav.navbar .navbar-brand img {
 .numberManipulation button.increment {
   background-color: var(--primary);
 }
+
 .numberManipulation button.decrement {
   background-color: azure;
 }
@@ -151,13 +162,14 @@ header.login-header div.separation-line div.white-dot {
   border-radius: 10px;
   background: white;
 }
+
 header.login-header div.separation-line div.white-line {
   width: 1px;
   height: 550px;
   background: white;
 }
 
-header.login-header div.login-info input{
+header.login-header div.login-info input {
   width: 18.5em;
   height: 3em;
   border: none;
@@ -169,7 +181,8 @@ header.login-header div.login-info input{
   font-size: 1.5em;
   line-height: 33px;
 }
-header.login-header div.login-info input::placeholder{
+
+header.login-header div.login-info input::placeholder {
   color: white;
   font-weight: bold;
   font-size: 1.5em;
@@ -194,7 +207,7 @@ header.login-header div.login-info .btn-auth-action {
   line-height: 2em;
 }
 
-header.login-header div.login-info button.btn-login-google{
+header.login-header div.login-info button.btn-login-google {
   background-color: white;
   color: black;
   border-radius: 10px;
@@ -211,7 +224,7 @@ main {
   padding-top: 3em;
 }
 
-main.main-content div.contents{
+main.main-content div.contents {
   margin-bottom: 2em;
 }
 
@@ -225,12 +238,13 @@ main.main-content div.contents{
   font-size: 1.25px;
   line-height: 2em;
 }
-.new-arrival .view-more i{
+
+.new-arrival .view-more i {
   color: #4A4C53;
   font-size: 28px;
 }
 
-main.main-content div.contents div.content-info{
+main.main-content div.contents div.content-info {
   position: absolute;
   background-color: white;
   border-radius: 6px;
@@ -243,7 +257,8 @@ main.main-content div.contents div.content-info{
   align-items: center;
   box-shadow: #000000;
 }
-main.main-content div.contents div.content-info-2{
+
+main.main-content div.contents div.content-info-2 {
   position: absolute;
   background-color: #F5F5F5;
   border-radius: 6px;
@@ -273,7 +288,7 @@ main.main-content div.contents div.content-info p {
   margin-bottom: 0px;
 }
 
-main.main-content div.contents div.content-info p b{
+main.main-content div.contents div.content-info p b {
   color: #042521;
   font-size: 17px;
   font-weight: 600px;
@@ -296,10 +311,12 @@ header .header-content button.user-auth {
   margin-bottom: 1.5em;
   font-size: 1.5em;
 }
+
 #google-login {
   margin-top: 0;
   margin-bottom: 34px;
 }
+
 header .header-content a.user-auth {
   width: 490px;
   height: 80px;
@@ -309,16 +326,19 @@ header .header-content a.user-auth {
   margin-bottom: 1.5em;
   font-size: 1.5em;
 }
+
 #register {
   vertical-align: middle;
   margin-left: 0;
   margin-top: 0;
 }
+
 #login {
   vertical-align: middle;
   margin-left: 0;
   margin-top: 0;
 }
+
 header.home-header .header-content a {
   font-family: 'Mulish', serif;
   font-size: 1.25px;
@@ -371,7 +391,7 @@ footer div.footer {
 footer.footer-content {
   padding-top: 75px;
   background: #F9F9FB;
-  
+
   font-family: 'Mulish', sans-serif;
   font-weight: 300;
   line-height: 28px;
@@ -388,6 +408,7 @@ footer.footer-content div.about p {
   margin-top: 26px;
   margin-bottom: 52px;
 }
+
 footer.footer-content div.about span {
   font-size: 17px;
 }
@@ -402,6 +423,7 @@ footer.footer-content div.links ul {
   padding: 0;
   line-height: 60px;
 }
+
 footer.footer-content div.links li {
   line-height: 38px;
 }
@@ -458,6 +480,7 @@ nav .navbar-brand {
   border-radius: 8px;
   background-color: #393939;
 }
+
 .btn-gray {
   border-radius: 8px;
   background-color: rgba(203, 203, 212, 0.2);
@@ -469,12 +492,13 @@ header.home-header {
   background-size: cover;
   height: 763px;
 }
+
 header.home-header .header-content {
   background-color: rgba(0, 0, 0, 0.7);
   color: white;
 }
 
-header.home-header h5{
+header.home-header h5 {
   font-weight: 600;
   font-size: 22px;
 }
@@ -506,10 +530,11 @@ header.home-header .header-content .vehicle-search::placeholder {
   color: #DADADA;
 }
 
-header.home-header .header-content select.vehicle-search option{
+header.home-header .header-content select.vehicle-search option {
   background: rgba(0, 0, 0, .7);
   border: none;
 }
+
 header.home-header .header-content button.vehicle-search {
   width: 10em;
   height: 3.5em;
@@ -523,6 +548,7 @@ header.home-header .header-content button.vehicle-search {
   line-height: 50px;
   font-family: 'Playfair Display', serif;
 }
+
 .main-content .title a {
   font-size: 17px;
   font-weight: 400;
@@ -532,10 +558,10 @@ header.home-header .header-content button.vehicle-search {
 }
 
 
-.main-content .testimonial i{
+.main-content .testimonial i {
   margin-left: 8px;
   margin-right: 8px;
-  
+
   color: #FFBB0C;
 }
 
@@ -550,14 +576,14 @@ header.home-header .header-content button.vehicle-search {
   width: 450px;
 }
 
-.main-content .testimonial h5{
+.main-content .testimonial h5 {
   font-weight: bold;
   font-size: 22px;
   line-height: 48px;
   margin-bottom: 0px;
 }
 
-.main-content .testimonial span{
+.main-content .testimonial span {
   font-size: 1.25px;
   line-height: 48px;
 }
@@ -579,6 +605,7 @@ main.main-content .detail h1 {
   line-height: 1em;
   color: #042521;
 }
+
 main.main-content .detail h2 {
   font-family: 'Playfair Display', sans-serif;
   font-size: 36px;
@@ -586,6 +613,7 @@ main.main-content .detail h2 {
   line-height: 25px;
   color: black;
 }
+
 main.main-content .detail h3 {
   font-family: 'Playfair Display', sans-serif;
   font-size: 36px;
@@ -598,6 +626,7 @@ main.main-content .detail h3 {
   color: #087E0D;
   font-weight: bold;
 }
+
 .status-true-light {
   color: #087E0D;
   font-weight: 400;
@@ -618,26 +647,27 @@ main.main-content .detail h3 {
   line-height: 25px;
 }
 
-.pay-confirm button{
+.pay-confirm button {
   min-height: 90px;
   width: 100%;
   font-weight: 900;
 }
 
-.pay-confirm button span{
+.pay-confirm button span {
   color: #9B0A0A;
 }
 
-.reservation{
+.reservation {
   font-size: 1.5em;
   line-height: 25px;
 }
 
-.reservation p{
+.reservation p {
   font-weight: 700;
 }
 
-.reservation input, .reservation select{
+.reservation input,
+.reservation select {
   font-size: 1.5em;
   min-height: 80px;
   line-height: 2em;
@@ -646,9 +676,11 @@ main.main-content .detail h3 {
   border-radius: 10px;
 }
 
-.reservation input:focus, .reservation select:focus{
+.reservation input:focus,
+.reservation select:focus {
   background-color: unset;
 }
+
 .back-link {
   display: flex;
   align-items: center;
@@ -671,19 +703,19 @@ main.main-content .detail h3 {
   color: black !important;
 }
 
-.photo-list i{
+.photo-list i {
   color: #4A4C53;
   font-size: 22px;
   font-weight: bold;
 }
 
-.quantity{
+.quantity {
   font-size: 48px;
   font-weight: 900;
   line-height: 25px;
 }
 
-.quantity button{
+.quantity button {
   border-radius: 10px;
   width: 80px;
   height: 80px;
@@ -706,7 +738,7 @@ main.main-content .detail h3 {
   font-size: 2em;
 }
 
-main.main-content .detail img{
+main.main-content .detail img {
   width: 452px;
   height: 317px;
   object-fit: contain;
@@ -732,10 +764,10 @@ button.copy-code {
   line-height: 1.5em;
 }
 
-.transaction-info .qty, 
+.transaction-info .qty,
 .transaction-info .reservation-date,
 .transaction-info .order-details,
-.transaction-info .identity{
+.transaction-info .identity {
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -743,13 +775,14 @@ button.copy-code {
   border-radius: 10px;
 }
 
-.transaction-info .qty, 
-.transaction-info .reservation-date{
+.transaction-info .qty,
+.transaction-info .reservation-date {
   min-height: 108px;
   width: 100%;
 }
-.transaction-info .order-details, 
-.transaction-info .identity{
+
+.transaction-info .order-details,
+.transaction-info .identity {
   flex-direction: column;
   align-items: center;
   min-height: 245px;
@@ -764,7 +797,7 @@ nav.navbar {
   margin-top: 90px;
 }
 
-.profile-bio h1 {  
+.profile-bio h1 {
   font-family: 'Playfair Display', sans-serif;
   font-weight: bold;
   font-size: 48px;
@@ -772,7 +805,7 @@ nav.navbar {
   margin-bottom: 40px;
 }
 
-.profile-bio h2 {  
+.profile-bio h2 {
   font-weight: bold;
   font-size: 36px;
   line-height: 1.5em;
@@ -808,7 +841,7 @@ nav.navbar {
   align-items: center;
 }
 
-.profile-picture .profile-edit img.edit-icon{
+.profile-picture .profile-edit img.edit-icon {
   width: 16px;
   height: 17px;
 }
@@ -818,11 +851,13 @@ nav.navbar {
   height: 200px;
   border-radius: 100px;
 }
+
 img.profile-icon {
   width: 50px;
   height: 50px;
   border-radius: 25px;
 }
+
 img.email-icon {
   width: 40px;
   height: 36px;
@@ -845,7 +880,7 @@ form.profile-info input {
   border: none;
   border-bottom: solid 1px black;
   border-radius: 0;
-    
+
   font-style: normal;
   font-weight: normal;
   font-size: 1.5em;
@@ -890,6 +925,7 @@ main.main-content .history {
 main.main-content .history .history-filter {
   font-family: 'Poppins', sans-serif;
 }
+
 main.main-content .history .history-filter input[type=text] {
   height: 75px;
   width: 100%;
@@ -899,7 +935,7 @@ main.main-content .history .history-filter input[type=text] {
   padding-left: 40px;
 }
 
-main.main-content .history .history-filter select{
+main.main-content .history .history-filter select {
   height: 75px;
   background-color: rgba(218, 218, 218, 0.27);
   border: 0.5px solid #C4C4C4;
@@ -954,6 +990,7 @@ header.header-forgot-password .header-content .main {
   height: 100%;
   color: white;
 }
+
 header.header-forgot-password .header-content .main h1 {
   text-align: center;
   margin: 0;
@@ -965,17 +1002,19 @@ header.header-forgot-password .header-content .main span {
   font-weight: 700px;
 }
 
-header.header-forgot-password .header-content .main a{
+header.header-forgot-password .header-content .main a {
   color: white;
   font-size: 1.5em;
   margin-left: 0px;
   font-weight: 900;
 }
-header.header-forgot-password .header-content .main .form-forgot{
+
+header.header-forgot-password .header-content .main .form-forgot {
   height: 4em;
   width: 28em;
   font-size: 1.5em;
 }
+
 header.header-forgot-password .header-content .main .form-forgot input {
   background-color: rgba(255, 255, 255, 0.26);
   border: none;
@@ -983,10 +1022,12 @@ header.header-forgot-password .header-content .main .form-forgot input {
   color: white;
   text-align: center;
 }
+
 header.header-forgot-password .header-content .main .form-forgot input::placeholder {
   color: white;
 }
-header.header-forgot-password .header-content .main .form-forgot input:focus{
+
+header.header-forgot-password .header-content .main .form-forgot input:focus {
   outline: none;
 }
 
@@ -1023,6 +1064,7 @@ div.break {
     font-size: 2.5em !important;
     line-height: 1.5em !important;
   }
+
   header.login-header p {
     margin-top: 1em !important;
     font-size: 1em !important;
@@ -1050,20 +1092,21 @@ div.break {
     font-size: 1em !important;
   }
 
-  
+
   header.login-header .auth-contents input {
     width: 100% !important;
     height: 2em !important;
     font-size: 1em !important;
   }
 
-  header.login-header .auth-contents input::placeholder{
+  header.login-header .auth-contents input::placeholder {
     font-size: 1em !important;
   }
 
   header.login-header .auth-contents .other-action-xl {
     display: none;
   }
+
   header.login-header .auth-contents .other-action {
     min-width: 239px;
     display: block !important;
@@ -1109,8 +1152,9 @@ div.break {
 
   nav.navbar {
     height: auto;
-    margin: 60px 16px;  
+    margin: 60px 16px;
   }
+
   .btn-navbar {
     width: 8em;
   }
@@ -1123,8 +1167,9 @@ div.break {
   footer.footer-content .about {
     width: 100%;
     order: 2;
-    
+
   }
+
   footer.footer-content div.about p {
     width: 100%;
   }
@@ -1161,16 +1206,19 @@ div.break {
     align-items: center !important;
     flex-wrap: nowrap !important;
   }
+
   .action-button-list button {
     min-height: unset;
     font-size: 1em;
     line-height: 2em;
     height: 3em;
-    width: 96% ;
+    width: 96%;
   }
+
   .action-button-list i {
     font-size: 1.5em;
   }
+
   .button-list button {
     width: 100% !important;
   }
@@ -1186,7 +1234,7 @@ div.break {
     height: 90px;
     overflow: hidden;
   }
-  
+
   main.main-content .transaction-info {
     font-size: 1em !important;
   }
@@ -1199,7 +1247,8 @@ div.break {
     font-size: 1.75em !important;
   }
 
-  .profile-bio, .profile-info {
+  .profile-bio,
+  .profile-info {
     font-size: .75em !important;
   }
 }
@@ -1239,13 +1288,14 @@ div.break {
     align-items: center;
     text-align: center;
   }
+
   footer.footer-content .abouts .links {
     margin: 1.5em 0;
   }
 
-  main.main-content .popular, 
-  main.main-content .cars, 
-  main.main-content .motorbike, 
+  main.main-content .popular,
+  main.main-content .cars,
+  main.main-content .motorbike,
   main.main-content .bike {
     flex-direction: column;
   }
@@ -1256,24 +1306,28 @@ div.break {
 
   .main-content .title a {
     font-size: 1em;
-  } 
+  }
 }
 
-@media (max-width: 575px) { /*sm breakpoint*/
+@media (max-width: 575px) {
+
+  /*sm breakpoint*/
   .numberManipulation {
     font-size: 1em;
   }
+
   .numberManipulation button {
     font-size: 1.5em;
   }
 
   header.home-header .header-content button.vehicle-search {
-    width: 100% ;
+    width: 100%;
   }
 
   .transaction-info {
     font-size: 1em !important;
   }
+
   .code-info {
     font-size: 1.25em !important;
   }
