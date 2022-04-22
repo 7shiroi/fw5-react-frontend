@@ -27,7 +27,7 @@ export const getVehicles = (category=null, searchQuery=null, limit = process.env
       }
     }
   } else {
-    url = `http://localhost:5000/vehicle?limit=${limit}`
+    url = `${backendHost}vehicle?limit=${limit}`
   }
 
   if (searchQuery) {
