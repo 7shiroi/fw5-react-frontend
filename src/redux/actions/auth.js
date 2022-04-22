@@ -1,4 +1,5 @@
 import http from '../../helpers/http'
+import qs from 'qs'
 
 export const login = (username, password) => {
   const params = new URLSearchParams()
@@ -64,14 +65,16 @@ export const getProfile = (token)=> {
 }
 
 export const editProfile = (token, data)=> {
-  const params = new URLSearchParams()
-  params.append('username', data.username)
-  params.append('email', data.email)
-  params.append('address', data.address)
-  params.append('phone_number', data.phone_number)
-  params.append('birth_date', data.birth_date)
+  const params = new FormData()
+  for (const key in data) {
+    params.append(key, data[key]);
+  }
+  if (!data.picture){
+    params.delete('picture')
+  }
+
   return({
     type: 'EDIT_PROFILE',
-    payload: http(token).patch('profile', params)
+    payload: http(token, true).patch('profile', params)
   })
 }

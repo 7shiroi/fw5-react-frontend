@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Layout from '../components/Layout'
 import ProfileSamantha from '../assets/images/profile-samantha.png'
 import EditIcon from '../assets/images/edit-icon.png'
@@ -12,6 +12,25 @@ export const Profile = () => {
   const navigate = useNavigate()
   const auth = useSelector(state => state.auth)
   const dispatch = useDispatch()
+  const hiddenFileInput = useRef(null)
+  const [image, setImage] = useState(null)
+  
+  const uploadFile = () => {
+    hiddenFileInput.current.click()
+  }
+  const fileInputHandler = async (e) => {
+    const reader = new FileReader();
+    const uploadedImage = e.target.files[0];
+
+    const profilePicture = document.querySelector('#profilePicture');
+    reader.readAsDataURL(uploadedImage);
+
+    reader.onload = (e) => {
+      profilePicture.src = e.target.result;
+    };
+
+    setImage(uploadedImage)
+  };
 
   useEffect(()=> {
     if(!auth.token){
@@ -41,8 +60,10 @@ export const Profile = () => {
     const phone_number = e.target.elements['phone_number'].value
     const username = e.target.elements['username'].value
     const birth_date = e.target.elements['birth_date'].value
+    const picture = image
+    console.log(picture)
 
-    const data = {email, address, phone_number, username, birth_date}
+    const data = {email, address, phone_number, username, birth_date, picture}
     dispatch(editProfile(auth.token, data))
     window.scrollTo(0,0)
   }
@@ -55,8 +76,15 @@ export const Profile = () => {
           <div className="d-flex flex-column align-items-center">
             <div className="profile-picture row">
               <div className="d-relative">
-                <img className="profile" src={auth.userData.picture ? auth.userData.picture : NoProfilePicture} alt="profile" />
-                <div className="profile-edit">
+                <img id='profilePicture' className="profile" src={auth.userData.picture ? auth.userData.picture : NoProfilePicture} alt="profile" />
+                <div className="profile-edit important" onClick={uploadFile}>
+                  <input type="file"
+                    ref={hiddenFileInput}
+                    className='d-none'
+                    name='image'
+                    accept='image'
+                    onChange={(e) => fileInputHandler(e)}
+                  />
                   <img className="edit-icon" src={EditIcon} alt="edit-icon" />
                 </div>
               </div>
