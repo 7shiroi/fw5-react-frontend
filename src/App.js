@@ -17,10 +17,13 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getProfile } from './redux/actions/auth';
 import VerifyUser from './pages/VerifyUser';
 import ResetPassword from './pages/ResetPassword';
+import AddItem from './pages/Admin/AddItem';
+import { getCategory } from './redux/actions/category';
 
 export const App = () => {
   const auth = useSelector(state => state.auth)
   const history = createBrowserHistory({window})
+  const category = useSelector(state => state.category)
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -37,6 +40,12 @@ export const App = () => {
       dispatch(getProfile(token))
     }
   }, [dispatch])
+
+  useEffect(() => {
+    if (category.data.length === 0) {
+      dispatch(getCategory())
+    }
+  }, [])
 
   return (
     <BrowserRouter history={history}>
@@ -56,6 +65,7 @@ export const App = () => {
           <Route path='/history' element={<History />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/verify-user' element={<VerifyUser />} />
+          <Route path='/admin/add-vehicle' element={<AddItem />} />
       </Routes>
     </BrowserRouter>
   )

@@ -45,3 +45,18 @@ export const getVehiclesNext = (url) => {
     payload: axios.get(url)
   }
 }
+
+export const addVehicle = (token, data)=> {
+  const params = new FormData()
+  for (const key in data) {
+    params.append(key, data[key]);
+  }
+  if (!data.image){
+    params.delete('image')
+  }
+
+  return({
+    type: 'ADD_VEHICLE',
+    payload: http(token, true).post('vehicle', params)
+  })
+}

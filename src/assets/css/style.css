@@ -5,8 +5,42 @@
   --secondary-softer: #9AD0EC;
 }
 
+.bg-gray {
+  background-color: #eeeeee;
+}
+
 .important {
   cursor: pointer;
+}
+
+.gap1 {
+  width: .5em;
+  height: 100%;
+}
+
+.gap2 {
+  width: .1em;
+  height: 100%;
+}
+
+.gap3 {
+  width: 1.5em;
+  height: 100%;
+}
+
+.gap4 {
+  width: 2em;
+  height: 100%;
+}
+
+.gap5 {
+  width: 2.5em;
+  height: 100%;
+}
+
+.addItemContainer {
+  min-width: 15em;
+  min-height: 22em;
 }
 
 h1,
