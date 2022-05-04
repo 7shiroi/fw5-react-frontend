@@ -5,12 +5,15 @@ import ItemContent from '../components/ItemContent'
 import Navbar from '../components/Navbar'
 import NoImageIcon from '../assets/images/no-image-icon.png'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { getVehicles } from '../redux/actions/vehicles'
 
 export const VehicleType = () => {
   const [popular, setPopular] = useState([])
   const [car, setCar] = useState([])
   const [motorbike, setMotorbike] = useState([])
   const [bike, setBike] = useState([])
+  const dispatch = useDispatch()
 
   useEffect(() => {
     getPopular()
@@ -20,20 +23,20 @@ export const VehicleType = () => {
   }, [])
 
   const getPopular = async () => {
-    const {data} = await axios.get('http://localhost:5000/vehicle/popular?limit=4')
-    setPopular(data.result)
+    const result = await dispatch(getVehicles('popular', null, '4'))
+    setPopular(result.value.data.result)
   }
   const getCar = async () => {
-    const {data} = await axios.get('http://localhost:5000/vehicle/category/1?limit=4')
-    setCar(data.result)
+    const result = await dispatch(getVehicles('cars', null, '4'))
+    setCar(result.value.data.result)
   }
   const getMotorbike = async () => {
-    const {data} = await axios.get('http://localhost:5000/vehicle/category/3?limit=4')
-    setMotorbike(data.result)
+    const result = await dispatch(getVehicles('motorbikes', null, '4'))
+    setMotorbike(result.value.data.result)
   }
   const getBike = async () => {
-    const {data} = await axios.get('http://localhost:5000/vehicle/category/2?limit=4')
-    setBike(data.result)
+    const result = await dispatch(getVehicles('bikes', null, '4'))
+    setBike(result.value.data.result)
   }
 
   return (
