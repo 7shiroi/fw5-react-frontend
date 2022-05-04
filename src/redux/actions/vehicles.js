@@ -27,7 +27,7 @@ export const getVehicles = (category=null, searchQuery=null, limit = process.env
       }
     }
   } else {
-    url = `http://localhost:5000/vehicle?limit=${limit}`
+    url = `${backendHost}vehicle?limit=${limit}`
   }
 
   if (searchQuery) {
@@ -44,4 +44,19 @@ export const getVehiclesNext = (url) => {
     type: 'GET_VEHICLES_NEXT',
     payload: axios.get(url)
   }
+}
+
+export const addVehicle = (token, data)=> {
+  const params = new FormData()
+  for (const key in data) {
+    params.append(key, data[key]);
+  }
+  if (!data.image){
+    params.delete('image')
+  }
+
+  return({
+    type: 'ADD_VEHICLE',
+    payload: http(token, true).post('vehicle', params)
+  })
 }

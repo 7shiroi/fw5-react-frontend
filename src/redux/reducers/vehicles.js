@@ -41,6 +41,25 @@ const vehicles = (state=initialState, action) => {
       state.isError = true
       return {...state}
     }
+    case 'ADD_VEHICLE_PENDING':{
+      state.error = false
+      state.isLoading = true
+      state.message = ''
+      return {...state}
+    }
+    case 'ADD_VEHICLE_FULFILLED':{
+      const {data} = action.payload
+      state.isLoading = false
+      state.message = data.message
+      return {...state}
+    }
+    case 'ADD_VEHICLE_REJECTED': {
+      const {data} = action.payload.response
+      state.isLoading = false
+      state.error = true
+      state.errorMsg = data.message
+      return {...state}
+    }
     default: {
       return {...state}
     }
