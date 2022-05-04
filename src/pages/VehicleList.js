@@ -20,33 +20,10 @@ export const VehicleList = () => {
   const [pageInfo, setPageInfo] = useState([])
   let [searchParams, setSearchParams] = useSearchParams();
   const [responseStatus, setResponseStatus] = useState(null)
-  const [categoryList, setCategoryList] = useState([])
-
-  const makeUrl = (queryParams) => {
-    let url = ""
-
-    if (!category){
-      url = `http://localhost:5000/vehicle?limit=${limit}`
-    }else if (category === 'popular'){
-      setTitle("Popular in Town List")
-    }else if (category === 'cars') {
-      setTitle("Cars List")
-    }else if (category === 'motorbikes') {
-      setTitle("Motorbikes List")
-    }else if (category === 'bikes') {
-      setTitle("Bikes List")
-    }    
-    if(queryParams){
-      url += queryParams
-    }
-    return url
-  }
-
-  useEffect(()=>{
-    console.log(vehicles)
-  },[vehicles])
+  const categoryList = useSelector(state => state.category.data)
 
   useEffect(() => {
+    
     const search = searchParams.get('search')
     const isAvailable = searchParams.get('isAvailable')
     const hasPrepayment = searchParams.get('hasPrepayment')
@@ -63,8 +40,6 @@ export const VehicleList = () => {
       }
     }
     
-    const url = makeUrl(queryString)
-
     if(search){
       document.getElementById('searchFilter').elements["search"].value = search
     }
@@ -84,41 +59,14 @@ export const VehicleList = () => {
       document.getElementById('searchFilter').elements["category"].value = idCategory
     }
 
-    // getList(url)
-    // getVehicles(category, queryString)
     dispatch(getVehicles(category, queryString))
-    getCategoryList()
   }, [])
 
-  const getList = async (url) => {
-    const {data, status} = await axios.get(url, {
-      validateStatus: function (status) {
-        return status < 500; 
-      }
-    })
-    setResponseStatus(status)
-
-    if(status === 200) {
-      setList(data.result)
-      setPageInfo(data.pageinfo)
-    }
-  }
   
   const getNextData = async (url) => {
-    // const {data} = await axios.get(url)
     dispatch(getVehiclesNext(url))
-
-    // setList([
-    //     ...list,
-    //     ...data.result
-    // ])
-    // setPageInfo(data.pageinfo)
   }
 
-  const getCategoryList = async () => {
-    const {data} = await axios.get('http://localhost:5000/category')
-    setCategoryList(data.result)
-  }
 
   const onSearch = async(event)=>{
     event.preventDefault();
@@ -131,11 +79,8 @@ export const VehicleList = () => {
 
     const data = {search, isAvailable, hasPrepayment, sort, order, idCategory}
     const queryString = '&'+JSON.stringify(data).replaceAll('"', "").replaceAll(',','&').replaceAll(':', '=').replaceAll(' ', '%20').replaceAll('{', '').replaceAll('}', '')
-    const url = makeUrl(queryString)
     setSearchParams(data)
-    // await getList(url)
     dispatch(getVehicles(category, queryString))
-    // getVehicles(category, queryString)
   }
 
   return (
@@ -146,7 +91,7 @@ export const VehicleList = () => {
             <section>
               <div className='row'>
                   <div className='col'>
-                      <h2>{title}</h2>
+                      <h2>Search</h2>
                   </div>
               </div>
               <section className='searchBar mb-5'>

@@ -11,15 +11,15 @@ export const getVehicles = (category=null, searchQuery=null, limit = process.env
         break
       }
       case 'cars': {
-        url = `${backendHost}vehicle/category/1?limit=${limit}`
+        url = `${backendHost}vehicle/?idCategory=1&limit=${limit}`
         break
       }
       case 'motorbikes': {
-        url = `${backendHost}vehicle/category/3?limit=${limit}`
+        url = `${backendHost}vehicle/?idCategory=3&limit=${limit}`
         break
       }
       case 'bikes': {
-        url = `${backendHost}vehicle/category/2?limit=${limit}`
+        url = `${backendHost}vehicle/?idCategory=2&limit=${limit}`
         break
       }
       default: {
