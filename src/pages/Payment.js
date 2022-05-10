@@ -13,8 +13,6 @@ import { paymentFailed, paymentSuccess, processPayment } from '../redux/actions/
 export const Payment = () => {
   const navigate = useNavigate()
   const [displayDate, setDisplayDate] = useState("")
-  const [startDate, setStartDate] = useState("")
-  const [endDate, setEndDate] = useState("")
 
   const auth = useSelector(state => state.auth)
   const transaction = useSelector(state => state.transaction)
@@ -52,8 +50,6 @@ export const Payment = () => {
       }else{
         setDisplayDate(`${months[start.getMonth()]} ${start.getDate()} ${start.getFullYear()} - ${months[end.getMonth()]} ${end.getDate()} ${end.getFullYear()}`)
       }
-      setStartDate(`${start.getFullYear()}-${start.getMonth()}-${start.getDate()}`)
-      setEndDate(`${end.getFullYear()}-${end.getMonth()}-${end.getDate()}`)
       const data = {
         id_user: auth.userData.id,
         id_vehicle: detailVehicle.data.id,
