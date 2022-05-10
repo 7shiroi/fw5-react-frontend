@@ -7,6 +7,7 @@ import histories from './histories'
 import localStorage from 'redux-persist/es/storage'
 import persistReducer from 'redux-persist/es/persistReducer'
 import category from './category'
+import payment from './payment'
 
 const persistAuth = {
   key: 'auth',
@@ -24,6 +25,7 @@ const rootReducer = combineReducers({
   detailVehicle,
   transaction,
   histories,
+  payment,
 })
 
 export default rootReducer

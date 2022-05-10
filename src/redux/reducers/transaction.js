@@ -6,6 +6,7 @@ const initialState = {
   error: false,
   errorMsg: '',
   message: '',
+  transactionId: null,
 }
 
 const transaction = (state=initialState, action) =>{
@@ -20,6 +21,7 @@ const transaction = (state=initialState, action) =>{
       state.isLoading = false
       state.error = false
       state.message = data.message
+      state.transactionId = data.result[0].history_id
       return {...state}
     }
     case 'RENT_TRANSACTION_REJECTED': {
