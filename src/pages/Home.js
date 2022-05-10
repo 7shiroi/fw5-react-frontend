@@ -1,5 +1,4 @@
-import {default as axios} from 'axios'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import ItemContent from '../components/ItemContent'
 import Layout from '../components/Layout'
@@ -7,17 +6,19 @@ import {FaStar} from 'react-icons/fa'
 import testimonyImage from '../assets/images/image-main-content-testimonial-user.png'
 import { useDispatch, useSelector } from 'react-redux'
 import { getProfile } from '../redux/actions/auth'
+import qs from 'qs'
+import { getVehicles } from '../redux/actions/vehicles'
 
 export const Home = () => {
-  const [popular, setPopular] = useState([])
-  const [category, setCategory] = useState([])
+  // const [popular, setPopular] = useState([])
+  const popular = useSelector(state => state.vehicles.data)
+  const category = useSelector(state => state.category)
   const navigate = useNavigate()
   const auth = useSelector(state => state.auth)
   const dispatch = useDispatch()
 
   useEffect(() => {
     getPopular();
-    getCategory();
     
     if(auth.token){
       dispatch(getProfile(auth.token))
@@ -26,21 +27,14 @@ export const Home = () => {
 
 
   const getPopular = async () => {
-    const {data} = await axios.get('http://localhost:5000/vehicle/popular?limit=4')
-    setPopular(data.result)
+    dispatch(getVehicles('popular', null, '4'))
   }
-  const getCategory = async () => {
-    const {data} = await axios.get('http://localhost:5000/category')
-    setCategory(data.result)
-  }
-
   const onSearch = async(event)=>{
     event.preventDefault();
     const search = event.target.elements["search"].value
     const category = event.target.elements["category"].value
     const data={search, idCategory: category}
-    const queryString = JSON.stringify(data).replaceAll('"', "").replaceAll(',','&').replaceAll(':', '=').replaceAll(' ', '%20').replaceAll('{', '').replaceAll('}', '')
-    console.log(queryString)
+    const queryString = qs.stringify(data)
     navigate(`/vehicles/search?${queryString}`)
   }
 
@@ -63,7 +57,7 @@ export const Home = () => {
                       <select className='form-select vehicle-search' name="category">
                         <option className='d-none' value=''>Vehicle Type</option>
                         {
-                          category.map((obj) => (
+                          category.data.map((obj) => (
                             <option key={obj.id} value={obj.id}>{obj.name}</option>
                           ))
                         }
