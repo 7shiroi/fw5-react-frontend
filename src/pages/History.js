@@ -5,7 +5,7 @@ import whiteJeepKalimantan from '../assets/images/image-main-content-white-jeep-
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getHistories } from '../redux/actions/histories'
-// import HistoryItems from '../components/HistoryItems'
+import HistoryItems from '../components/HistoryItems'
 import { getProfile } from '../redux/actions/auth';
 import getDisplayDate from '../helpers/getDisplayDate'
 
@@ -149,9 +149,9 @@ export const History = () => {
                     return (
                       <div key={String(obj.history_id)} className='px-0 row'>
                         <div className="col-10">
-                          {/* <HistoryItems 
+                          <HistoryItems 
                             data={obj}
-                          /> */}
+                          />
                         </div>
                         <div className="col-2">
                           <div className="delete-checker form-check">
