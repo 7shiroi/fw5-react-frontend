@@ -73,17 +73,6 @@ export const Payment = () => {
   }
 
   const onPayment = async () => {
-    // const data = {
-    //   id_user: auth.userData.id,
-    //   id_vehicle: detailVehicle.data.id,
-    //   quantity: transaction.quantity,
-    //   date_start: startDate,
-    //   date_end: endDate,
-    //   prepayment: detailVehicle.data.has_prepayment ? (detailVehicle.data.price*(20/100)*transaction.quantity*transaction.rentDuration).toFixed(2) : 0,
-    // }
-    // const saveTransacation = await dispatch(rentTransaction(auth.token, data))
-
-    // await dispatch(processPayment(auth.token, saveTransacation.value.data.result[0].history_id))
     let paymentResult = null;
     if (!payment.token){
       paymentResult = await dispatch(processPayment(auth.token, transaction.transactionId))
@@ -92,18 +81,12 @@ export const Payment = () => {
       onSuccess: handlePaymentSuccess,
       onError: handlePaymentFailed
     })
-    // dispatch({
-    //   type: "CLEAR_TRANSACTION"
-    // })
-    // navigate('/history')
   }
   const handlePaymentSuccess = (result) => {
     dispatch(paymentSuccess(auth.token, transaction.transactionId))
-    alert('success')
   }
   const handlePaymentFailed = (result) => {
     dispatch(paymentFailed)
-    alert('failed')
   }
 
   return (
