@@ -5,7 +5,7 @@ import whiteJeepKalimantan from '../assets/images/image-main-content-white-jeep-
 import { useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { getHistories } from '../redux/actions/histories'
-import HistoryItems from '../components/HistoryItems'
+import HistoryItems from '../components/ItemHistory'
 import { getProfile } from '../redux/actions/auth';
 import getDisplayDate from '../helpers/getDisplayDate'
 
