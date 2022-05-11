@@ -102,7 +102,7 @@ export const Payment = () => {
     alert('success')
   }
   const handlePaymentFailed = (result) => {
-    dispatch(paymentFailed())
+    dispatch(paymentFailed)
     alert('failed')
   }
 
